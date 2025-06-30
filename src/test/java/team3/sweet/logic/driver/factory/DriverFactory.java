@@ -9,8 +9,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
 
-import common.LoggerLoad;
 import team3.sweet.logic.utils.ConfigReader;
+import team3.sweet.logic.utils.LoggerLoad;
 
 public class DriverFactory {
 	

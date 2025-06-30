@@ -1,4 +1,4 @@
-package common;
+package team3.sweet.logic.utils;
 
 import org.apache.logging.log4j.LogManager;
 
