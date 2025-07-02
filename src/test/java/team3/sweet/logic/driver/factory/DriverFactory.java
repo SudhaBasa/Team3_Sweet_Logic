@@ -67,4 +67,4 @@ public class DriverFactory {
 	public static void closeBrowser() {
 		getdriver().close();
 	}
-}
+
