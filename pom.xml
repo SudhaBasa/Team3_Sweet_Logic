@@ -68,7 +68,13 @@
     <artifactId>cucumber-java</artifactId>
     <version>7.20.1</version>
 </dependency>
-
+<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>7.23.0</version>
+    <scope>test</scope>
+</dependency>
 <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
 <dependency>
     <groupId>io.cucumber</groupId>
@@ -125,7 +131,7 @@
 </dependencies>
 
 <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
-    <build>
+   <build>
      <pluginManagement>
        <plugins>
         <plugin>
