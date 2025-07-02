@@ -2,6 +2,7 @@
 Feature: Profile form verification
 
   Background: User clicks continue with email button after entering a valid new email
+    Given User is on complete profile form page
 
   @tag1
   Scenario: Verify Create Account button is enabled after valid input

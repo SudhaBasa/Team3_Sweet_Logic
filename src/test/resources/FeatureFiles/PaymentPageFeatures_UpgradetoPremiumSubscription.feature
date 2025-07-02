@@ -2,6 +2,7 @@
 Feature: Upgrade to Premium Subscription
 
   Background: User clicks the "Upgrade to Premium" button after reaching subscription page
+    Given  User is in upgrade to premium page
 
   @tag1
   Scenario: Verify User able to do payment with empty fields

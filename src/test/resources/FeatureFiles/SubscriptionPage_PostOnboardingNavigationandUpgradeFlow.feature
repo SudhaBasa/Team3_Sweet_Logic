@@ -2,6 +2,7 @@
 Feature: Post-Onboarding Navigation and Upgrade Flow
 
   Background: User clicks submit / continue after completing onboarding process
+    Given User is in upgrade page
 
   @tag1
   Scenario: Verify user able to go to subscription payment screen

@@ -2,6 +2,7 @@
 Feature: Verification on Diabetes Risk Analyzer functional
 
   Background: User clicked on Check Your Risk button in home page
+    Given User is in diabetes risk analyzer
 
   @tag1
   Scenario: Validate 'Cancel" button to return home page

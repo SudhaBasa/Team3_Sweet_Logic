@@ -1,7 +1,7 @@
 Feature: Complete Profile Form validation for new user
 
   Background: User is on login page after clicking login in launch page
-
+  Given  User is on the login page
   Scenario: Verify Full Name field is visible
     Given User is on the login page
     When User clicks continue with email button after entering a valid new email

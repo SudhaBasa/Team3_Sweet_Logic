@@ -2,6 +2,7 @@
 Feature: Subscription page validation
 
   Background: User completes onboarding process
+    Given User is in last step for onboarding process
 
   @tag1
   Scenario: Verify Daily Meal Plan availability
