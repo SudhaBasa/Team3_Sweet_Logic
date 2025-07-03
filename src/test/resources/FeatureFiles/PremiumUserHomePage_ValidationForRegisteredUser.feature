@@ -60,28 +60,20 @@ Background: User is in password auth page
     Given User is in password auth page
     When User clicks sign in after entering password
     Then User should see 4 button options
-       
-  Scenario: Verify the first button text " Blood Glucose"
-    Given User is in password auth page
-    When User clicks sign in after entering password
-    Then User should see text "Blood Glouce"
-       
-  Scenario: Verify the second button text " Physical Activity"
-    Given User is in password auth page
-    When User clicks sign in after entering password
-    Then User should see " Physical activity"
     
-    Scenario: Verify the third button text " Food Intake"
+    Scenario Outline: Verify in order button text are displayed below Record New Data  
     Given User is in password auth page
-    When User clicks sign in after entering password
-    Then User should see "Food Intake"
-      
-  Scenario: Verify the fourth button text " Medication"
-    Given User is in password auth page
-    When User clicks sign in after entering password
-    Then User Should see "Medication"
-    
-     Scenario: Verify  icon for Blood Glucose
+    When When User clicks sign in after entering password
+    Then User should see all the fields under "<Button_Order>" below Record New Data
+   
+   Examples:
+   |Button_Order     |
+   |Blood Glucose    | 
+   |Physical Activity|
+   |Food Intake      |
+   |Medication       |
+       
+    Scenario: Verify  icon for Blood Glucose
     Given User is in password auth page
     When User clicks sign in after entering password
     Then Activity icon should be present in blood glucose
@@ -101,7 +93,7 @@ Background: User is in password auth page
     When User clicks sign in after entering password
     Then Pill icon should be present in medication
     
- 
+
     
 
     
