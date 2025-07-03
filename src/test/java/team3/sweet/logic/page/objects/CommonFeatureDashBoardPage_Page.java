@@ -54,10 +54,10 @@ public class CommonFeatureDashBoardPage_Page {
 	@FindBy(xpath = "//button[normalize-space()='Save Changes']")
 	public WebElement Savechanges;
 	
-	@FindBy(xpath = "//*[@id=\"age\"]")
+	@FindBy(xpath = "//label[normalize-space()='Age']")
 	public WebElement Age;
 	
-	@FindBy(xpath = "//input[@id='age']")
+	@FindBy(xpath = "//*[@id=\"age\"]")
 	public WebElement AgeValue;
 	
 	@FindBy(xpath = "//label[normalize-space()='Height (cm)']")
@@ -222,6 +222,9 @@ public class CommonFeatureDashBoardPage_Page {
 	@FindBy(xpath = "//span[normalize-space()='0:00']")
 	public WebElement Time00Indicator;
 	
+	@FindBy(xpath = "//*[@id=\"radix-:r3:-content-meditation\"]/div/div/div[2]/div/div[3]/span[1]")
+	public WebElement Time00IndicatorProgress;
+		
 	@FindBy(xpath = "//span[normalize-space()='5:00']")
 	public WebElement Time5Indicator;
 	
@@ -249,7 +252,7 @@ public class CommonFeatureDashBoardPage_Page {
 	@FindBy(xpath = "//h3[normalize-space()='Present Moment Awareness']")
 	public WebElement Presentmov;
 	
-	@FindBy(xpath = "//*[@id=\"radix-:r3:-content-mindfulness\"]/div/p")
+	@FindBy(xpath = "//p[@class='text-sm text-black/80 mb-4']")
 	public WebElement Focusontext;
 	
 	@FindBy(xpath = "//li[contains(text(),'• Notice 5 things you can see')]")
@@ -291,7 +294,7 @@ public class CommonFeatureDashBoardPage_Page {
 	@FindBy(xpath = "//h3[normalize-space()='4-7-8 Breathing Technique']")
 	public WebElement BreathingTech;
 	
-	@FindBy(xpath = "//*[@id=\"radix-:r3:-content-breathing\"]/div/div/p")
+	@FindBy(xpath = "//p[@class='text-sm text-black/80 mb-4']")
 	public WebElement BreathingTechExplain;
 	
 	@FindBy(xpath = "//button[normalize-space()='Start Breathing Exercise']")
@@ -313,14 +316,19 @@ public class CommonFeatureDashBoardPage_Page {
 	@FindBy(xpath = "//p[contains(text(),'—')]")
 	public WebElement Currentphasevalue;
 	
-	@FindBy(xpath = "//*[@id=\"radix-:r3:-content-breathing\"]/div/div/div[3]/div[1]")
+	@FindBy(xpath = "//div[@class='p-3 rounded-lg bg-blue-600/10 border border-blue-400/20']")
 	public WebElement Inhale;
 	
-	@FindBy(xpath = "//*[@id=\"radix-:r3:-content-breathing\"]/div/div/div[3]/div[2]")
+	@FindBy(xpath = "//div[@class='p-3 rounded-lg bg-purple-400/10 border border-purple-400/20']")
 	public WebElement Hold;
 	
-	@FindBy(xpath = "//*[@id=\"radix-:r3:-content-breathing\"]/div/div/div[3]/div[3]")
+	@FindBy(xpath = "//div[@class='p-3 rounded-lg bg-green-400/10 border border-green-400/20']")
 	public WebElement Exhale;
+	
+	@FindBy(xpath = "//body/div[@id='root']/div[@class='min-h-screen bg-gradient-to-br from-indigo-100 to-purple-100']/main[@class='max-w-7xl mx-auto px-4 py-8']/div[@class='rounded-lg border mb-6 bg-indigo-300 text-white shadow-lg']/div[@class='p-6']/div[@class='w-full mb-6 bg-indigo-200 text-black shadow-lg']/div[@id='radix-:r3:-content-breathing']/div[1]")
+	public WebElement BreathingCycleIndicator;
+	
+	
 	
 	
 	public void NavigatetoDashBoardPage() {	
@@ -530,6 +538,9 @@ public class CommonFeatureDashBoardPage_Page {
     public boolean isProgressBarDisplayed() {
         return Prgogressbar.isDisplayed();
     }
+    public boolean isProgressBarTimeDisplayed() {
+        return Time00IndicatorProgress.isDisplayed();
+    }
 
     public boolean isTimeIndicatorDisplayed(String time) {
         switch (time) {
@@ -542,7 +553,7 @@ public class CommonFeatureDashBoardPage_Page {
         }
     }
     public String getProgressBarStyle() {
-        return Prgogressbar.getDomAttribute("style");
+        return Time00IndicatorProgress.getDomAttribute("style");
     }
     public void clickPlaybutton() {
     	Playbtn.click();
@@ -562,6 +573,30 @@ public class CommonFeatureDashBoardPage_Page {
             && shouldercircle.isDisplayed()
             && Wristankle.isDisplayed()
             && Gentletoros.isDisplayed();
+    }
+    public String PresentmomentAwaremessText() {
+        return Presentmov.getText().trim();
+    }
+    public boolean areMindfullnessDescriptionTextVisible() {
+        return Focusontext.isDisplayed()
+            && Notethingstext.isDisplayed()
+            && identifytext.isDisplayed()
+            && Listdifftext.isDisplayed()
+            && Findthingstext.isDisplayed()
+            && observethingtext.isDisplayed();
+    }
+    public void scrollToBenifitofDoabeticManagement() {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", Benifitdiabeticmanagement);
+    }
+    public void ClickStartBreathbutton() {
+    	StartbreathingBtn.click();
+    }
+    public String getCurrentBreathingText() {
+        return BreathingCycleIndicator.getText();
+    }
+
+    public String getBreathingPhaseStyle() {
+        return BreathingCycleIndicator.getDomAttribute("style");
     }
     
     
