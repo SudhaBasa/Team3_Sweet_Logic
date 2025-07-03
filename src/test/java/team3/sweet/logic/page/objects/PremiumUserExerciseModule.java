@@ -17,6 +17,7 @@ public class PremiumUserExerciseModule {
 	WebDriver driver;
 	String Email;
 	String PremUserPassword;
+	
 	public String exerciseName;
 	public String exerciseDescription;
 	public String exerciseDuration;

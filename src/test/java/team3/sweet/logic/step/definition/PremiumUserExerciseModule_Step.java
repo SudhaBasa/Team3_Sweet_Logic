@@ -11,6 +11,7 @@ public class PremiumUserExerciseModule_Step {
 
 	PremiumUserExerciseModule objPremiumUserExerciseModule = new PremiumUserExerciseModule();
 	LoggerLoad logger = new LoggerLoad();
+	
 	String expectedWarmUpDescription = "";
 	String expectedMainWorkoutDescription = "";
 	String expectedCoolDownDescription = "";
