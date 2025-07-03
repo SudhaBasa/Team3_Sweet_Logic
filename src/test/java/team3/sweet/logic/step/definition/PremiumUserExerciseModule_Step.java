@@ -105,8 +105,7 @@ public class PremiumUserExerciseModule_Step {
 			break;
 
 		case "A combination of slow-paced walking and gentle stretching exercises. Start with 20 minutes of walking at a comfortable pace, followed by static stretches like hamstring stretches, calf stretches, and shoulder stretches. Hold each stretch for 20-30 seconds.":
-			String actualMainWorkOut_ExerciseDescription = objPremiumUserExerciseModule
-					.exerciseDescription_MainWorkout();
+			String actualMainWorkOut_ExerciseDescription = objPremiumUserExerciseModule.exerciseDescription_MainWorkout();
 			LoggerLoad.debug("Actual text found for Height: " + actualMainWorkOut_ExerciseDescription);
 			Assert.assertEquals(expectedName, actualMainWorkOut_ExerciseDescription);
 			break;

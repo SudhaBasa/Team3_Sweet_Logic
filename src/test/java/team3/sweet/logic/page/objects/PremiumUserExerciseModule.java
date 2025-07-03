@@ -36,7 +36,6 @@ public class PremiumUserExerciseModule {
 	@FindBy(xpath = "//button[text()='Continue with email']")WebElement btnContinueWithEmail;
 	@FindBy(xpath = "//input[@name='password']")WebElement passwordInputElement;
 	@FindBy(xpath = "//button[text()='Sign in']")WebElement btnSignIn;
-	
 	@FindBy(xpath = "//*[@class ='block text-s mt-1']")WebElement exerciseOptionElement;
 	@FindBy(xpath = "//button[text()='View Full Schedule']")WebElement btnViewFullSchedule;
 	@FindBy(xpath = "//h1[@class='text-3xl font-bold text-white']")WebElement titleTodayExerciseScheduleElement;

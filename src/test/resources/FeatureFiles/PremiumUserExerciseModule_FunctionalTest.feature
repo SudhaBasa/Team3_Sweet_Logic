@@ -59,7 +59,7 @@ Background: User is Logged into the app
 #Given User is on the homepage
 #When User clicks the "Exercise" option from the side panel
 #Then "<Duration>","<Calories>","<Intensity Level>" is displayed under "Warm Up" tab
-#
+
 #Examples:
 #
        #|Duration      				|Calories  			|Intensity Level   |
