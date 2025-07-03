@@ -15,7 +15,7 @@ import team3.sweet.logic.utils.LoggerLoad;
 
 public class DriverFactory {
 	
-	public static ThreadLocal<WebDriver> thdriver = new ThreadLocal<>();
+public static ThreadLocal<WebDriver> thdriver = new ThreadLocal<>();
 	
 	public static String baseUrl = null;
 	
@@ -73,6 +73,5 @@ public class DriverFactory {
 	public static void closeBrowser() {
 		getdriver().close();
 	}
-	
 }
 

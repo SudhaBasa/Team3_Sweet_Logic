@@ -1,4 +1,3 @@
-@tag
 Feature: Verify Homepage UI components
 
   Scenario: Validate the presence of App Name on the home page
@@ -6,7 +5,6 @@ Feature: Verify Homepage UI components
     When User enters the SweetBalance url
     Then User should see app name on the top left
 
-  @tag2
   Scenario: Validate the presence of policy details
     Given User launches the browser
     When User enters the SweetBalance url
@@ -35,7 +33,7 @@ Feature: Verify Homepage UI components
   Scenario: Verify the Nutrition & Exercise card is visible
     Given User launches the browser
     When User enters the SweetBalance url
-    Then User should see a card with title "Nutrition & Exercise"
+    Then User should see a card with title "Nutrition & Excercise"
 
   Scenario: Verify the Smart Insights card is visible
     Given User launches the browser
@@ -80,7 +78,7 @@ Feature: Verify Homepage UI components
   Scenario: Verify testimonial from Maria L. is visible
     Given User launches the browser
     When User enters the SweetBalance url
-    Then Verify testimonial from Maria L. is visible
+    Then Verify testimonial from "Maria L". is visible
 
   Scenario: Verify testimonial from Robert T. is visible
     Given User launches the browser

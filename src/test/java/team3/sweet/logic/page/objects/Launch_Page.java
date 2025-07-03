@@ -32,13 +32,16 @@ public class Launch_Page {
     @FindBy(xpath = "//div[text()='SweetBalance']")
     WebElement App_Name;
     
-    @FindBy(xpath = "//*[@id=\"root\"]/div[1]/div")
+    @FindBy(xpath = "//div[text()='Our Terms of Service and Privacy Policy have recently been updated']")
+	public
     WebElement Policy_Details;
     
-    @FindBy(xpath = "//*[@id=\"root\"]/div[1]/main/section[1]/div/div[1]/h1")
+    @FindBy(xpath = "//h1[text()='Smart Diabetes Tracking ' or text()='Powered by AI']")
+	public
     WebElement Homepage_Heading;
     
-    @FindBy(xpath= "//*[@id=\"root\"]/div[1]/main/section[1]/div/div[2]/button")
+    @FindBy(xpath= "//button[text()='Start Today ']")
+
     WebElement Start_Today;
     
     
@@ -57,52 +60,52 @@ public class Launch_Page {
     @FindBy(xpath="//h3[text()='Smart Insights']")
     WebElement Smart_Insights;
     
-    @FindBy(xpath="//*[@id=\"root\"]/div[1]/main/section[2]/div/div[2]/div[1]")
+    @FindBy(xpath="*[@id=\"root\"]/div[1]/main/section[2]/div/div[2]/div[1]")
     WebElement Description_HealthTracking;
     
-    @FindBy(xpath="//*[@id=\"root\"]/div[1]/main/section[2]/div/div[2]/div[2]")
+    @FindBy(xpath="*[@id=\"root\"]/div[1]/main/section[2]/div/div[2]/div[2]")
     WebElement Description_NutritionExcercise;
     
-    @FindBy(xpath="//*[@id=\"root\"]/div[1]/main/section[2]/div/div[2]/div[3]")
+    @FindBy(xpath="*[@id=\"root\"]/div[1]/main/section[2]/div/div[2]/div[3]")
     WebElement Description_SmartInsights;
     
-    @FindBy(xpath="//*[local-name()='svg' and contains(@class, 'lucide-heart')]")
+    @FindBy(xpath="*[local-name()='svg' and contains(@class, 'lucide-heart')]")
     WebElement Heart_Icon;
     
-    @FindBy(xpath="//*[local-name()='svg' and contains(@class,  'lucide-square')]")
+    @FindBy(xpath="*[local-name()='svg' and contains(@class,  'lucide-square')]")
     WebElement Square_Icon;
     
     
-    @FindBy(xpath="//*[local-name()='svg' and contains(@class,  'lucide-clock ')]")
+    @FindBy(xpath="*[local-name()='svg' and contains(@class,  'lucide-clock ')]")
     WebElement Clock_Icon;
     
     
-    @FindBy(xpath="//*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[1]/div/p")
+    @FindBy(xpath="*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[1]/div/p")
     WebElement JamesD_Testimonial;
     
     
-    @FindBy(xpath="//*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[2]/div/p")
+    @FindBy(xpath="*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[2]/div/p")
     WebElement MariaL_Testimonial;
     
     
-    @FindBy(xpath="//*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[3]/div/p")
+    @FindBy(xpath="*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[3]/div/p")
     WebElement RoberT_Testimonial;
     
     
     @FindBy(xpath="//p[text()='Join our community of successful members']")
     WebElement JoinOur_CommunityText;
     
-    @FindBy(xpath="//*[@id=\"root\"]/div[1]/main/section[3]/div/div[1]/div")
+    @FindBy(xpath="*[@id=\"root\"]/div[1]/main/section[3]/div/div[1]/div")
     WebElement FiveStars_JoinOurCommunityText;
     
-    @FindBy(xpath="(//p[text()='James D.']/following::div)[1]//*[local-name()='svg' and contains(@class, 'lucide-star')]")
+    @FindBy(xpath="(//p[text()='James D.']/following::div)[1]*[local-name()='svg' and contains(@class, 'lucide-star')]")
     WebElement FiveStars_JamesD;
     
     
-    @FindBy(xpath="//*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[2]/div/div/div[2]/div")
+    @FindBy(xpath="*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[2]/div/div/div[2]/div")
     WebElement FiveStars_MariaL;
     
-    @FindBy(xpath="//*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[3]/div/div/div[2]/div")
+    @FindBy(xpath="*[@id=\"root\"]/div[1]/main/section[3]/div/div[2]/div[3]/div/div/div[2]/div")
     WebElement FiveStars_RobertD;
     
     
@@ -130,6 +133,12 @@ public class Launch_Page {
     }
     public String ComprehensiveTools() {
     	return Comprehensive_Tools.getText();
+    }
+    public String HealthTracking() {
+    	return Health_Tracking.getText().trim();
+    }
+    public String NutritionExcercise() {
+    	return Nutrition_Excercise.getText();
     }
     public void CheckYourRisk() {
     	CheckYourRisk_Button.click();
