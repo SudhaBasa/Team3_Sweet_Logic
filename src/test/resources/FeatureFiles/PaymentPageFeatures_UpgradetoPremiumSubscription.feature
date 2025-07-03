@@ -2,7 +2,7 @@
 Feature: Upgrade to Premium Subscription
 
   Background: User clicks the "Upgrade to Premium" button after reaching subscription page
-    Given  User is in upgrade to premium page
+    Given User is in upgrade to premium page
 
   @tag1
   Scenario: Verify User able to do payment with empty fields
@@ -11,15 +11,23 @@ Feature: Upgrade to Premium Subscription
     Then User should see validation messages for all required fields
 
   @tag2
-  Scenario: Verify User able to do payment with invalid card number
+  Scenario Outline: Verify User able to do payment with invalid card number
     Given User is in upgrade to premium page
-    When User clicks the "Pay $9.99 USD" button with invalid card number
+    When User clicks the "Pay $9.99 USD" button with "<invalid card number>"
     Then error message should be displayed
+    
+    Examples:
+    |invalid card number|
+    |1234567892234567|
 
-  Scenario: Verify User able to do payment with expired card
+  Scenario Outline: Verify User able to do payment with expired card
     Given User is in upgrade to premium page
-    When User clicks the "Pay $9.99 USD" button with expired card
+    When User clicks the "Pay $9.99 USD" button with "<expired card>"
     Then error message should be displayed
+    
+    Examples:
+    |expired card|
+    |2/20|
 
   Scenario: Verify User able to do payment with valid payment details
     Given User is in upgrade to premium page

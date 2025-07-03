@@ -3,21 +3,34 @@ Feature: Login page field and functional Validation
   Background: User clicked login button after reaching SweetBalance app homepage
     Given User is on the login page
 
-  Scenario: Verify email input accepts valid existing email
+  Scenario Outline: Verify email input accepts valid existing email
     Given User is on the login page
-    When Registered user clicks continue with email button after entering a valid existing email
+    When Registered user clicks continue with email button after entering a valid existing "<email>"
     Then User should get password field
 
-  Scenario: Verify email input rejects invalid email
-    Given User is on the login page
-    When User enters an invalid email
-    Then Email field should show validation error
+    Examples: 
+      | email                   |
+      | sweetlogic789@gmail.com |
 
-  Scenario: Verify password field in login page
+  Scenario Outline: Verify email input rejects invalid email
     Given User is on the login page
-    When Registered user clicks continue with email button after entering a valid email
+    When User enters an "<invalid email>"
+    Then Email field should show "<validation error>"
+
+    Examples: 
+      | invalid email | status                             |
+      | sweet         | Please enter a valid email address |
+
+  Scenario Outline: Verify password field in login page
+    Given User is on the login page
+    When Registered user clicks continue with email button after entering a "<valid email>"
     Then User should see Sign in button
-
+    
+    Examples:
+    | valid email |
+    |sweetlogic789@gmail.com|
+    
+    
   Scenario: Verify sub text
     Given User is on the login page
     When User clicks continue with email button after entering a valid email
@@ -33,12 +46,20 @@ Feature: Login page field and functional Validation
     When Registered user clicks continue with email button after entering a valid email
     Then User should see text " Enter your password" as placeholder in password field
 
-  Scenario: Verify password input accepts valid existing user
+  Scenario Outline: Verify password input accepts valid existing user
     Given User is on the login page
-    When Registered user clicks sign in after entering password
+    When Registered user clicks sign in after entering "<password>"
     Then User should be navigated to home page
 
-  Scenario: Verify email input accepts valid new email
+    Examples: 
+      | password |
+      | win2025$ |
+
+  Scenario Outline: Verify email input accepts valid new email
     Given User is on the login page
-    When Unregistered user clicks continue with email button after entering a valid new email
+    When Unregistered user clicks continue with email button after entering a valid "<new email>"
     Then User should get "Complete your profile"  form
+    
+    Examples:
+    |new email|
+    |jasmine01@gmail.com|
