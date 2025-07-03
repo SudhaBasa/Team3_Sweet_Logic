@@ -73,5 +73,5 @@ public static ThreadLocal<WebDriver> thdriver = new ThreadLocal<>();
 	public static void closeBrowser() {
 		getdriver().close();
 	}
-}	
+}
 
