@@ -1,6 +1,7 @@
 package team3.sweet.logic.driver.factory;
 
 import java.time.Duration;
+import java.util.Arrays;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,7 +15,7 @@ import team3.sweet.logic.utils.LoggerLoad;
 
 public class DriverFactory {
 	
-	public static ThreadLocal<WebDriver> thdriver = new ThreadLocal<>();
+public static ThreadLocal<WebDriver> thdriver = new ThreadLocal<>();
 	
 	public static String baseUrl = null;
 	
@@ -34,6 +35,11 @@ public class DriverFactory {
 		
 		if(browser.equalsIgnoreCase("chrome")) {
 			ChromeOptions co = new ChromeOptions();
+			co.setExperimentalOption("excludeSwitches", 
+		             Arrays.asList("enable-automation"));
+			co.setExperimentalOption("useAutomationExtension", false);
+			co.addArguments("--incognito");
+		         
 			co.addArguments("--remote-allow-origins=*");
 			//co.addArguments("--headless");
 			thdriver.set(new ChromeDriver(co));
@@ -51,7 +57,7 @@ public class DriverFactory {
 
 		getdriver().get(baseUrl);
 		getdriver().manage().window().maximize();
-		getdriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		getdriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		return thdriver.get();
 
 	}
@@ -67,4 +73,5 @@ public class DriverFactory {
 	public static void closeBrowser() {
 		getdriver().close();
 	}
+}	
 
