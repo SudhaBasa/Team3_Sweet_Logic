@@ -1,6 +1,8 @@
 package team3.sweet.logic.page.objects;
 
 import java.time.Duration;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +23,8 @@ public class PremiumUserExerciseModule {
 	public String exerciseDuration;
 	public String exerciseCalories;
 	public String exerciseIntensity;
+	public String actaulResultMarkAsCompleted;
+	public String actualResultSuccessDialog;
 	
 	public PremiumUserExerciseModule() {
 		
@@ -40,31 +44,20 @@ public class PremiumUserExerciseModule {
 	@FindBy(xpath = "//button[text()='Warm Up']")WebElement btnWarmUp;
 	@FindBy(xpath = "//button[text()='Main Workout']")WebElement btnMainWorkout;
 	@FindBy(xpath = "//button[text()='Cool Down']")WebElement btnCoolDown;
-	
 	@FindBy(xpath = "//h3[@class ='font-semibold']")WebElement exerciseNameElement;
-	@FindBy(xpath = "//p[@class ='text-gray-600 mb-2']")WebElement exerciseDescriptionElement;                    // not sure
-	
-	//div[@class ='flex space-x-4 text-sm text-gray-500']//span[text()='5 minutes']
-	
-	
-	@FindBy(xpath = "//div[@class ='flex space-x-4 text-sm text-gray-500']")WebElement exerciseDurationElement;   // not sure
-	@FindBy(xpath = "//div[@class ='flex space-x-4 text-sm text-gray-500']")WebElement exerciseCaloriesElement;   // not sure
-	@FindBy(xpath = "//div[@class ='flex space-x-4 text-sm text-gray-500']")WebElement exerciseIntensityElement;  // not sure
-	@FindBy(xpath = "//button[@class ='flex items-center px-3 py-1 bg-violet-600 hover:bg-violet-700 text-white rounded-lg shadow transition-colors text-sm']")
-	WebElement btnMarkAsCompleted;
-	
-	@FindBy(xpath = "//ol[@class='fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]']")
-	WebElement successDialogElement;
-	
+	@FindBy(xpath = "//p[@class ='text-gray-600 mb-2']")WebElement exerciseDescriptionElement;                    
+	@FindBy(xpath = " //span[contains(text(),'Duration: ')]")WebElement exerciseDurationElement;  
+	@FindBy(xpath = " //span[contains(text(),'Calories: ')]")WebElement exerciseCaloriesElement;  
+	@FindBy(xpath = " //span[contains(text(),'Intensity: ')]")WebElement exerciseIntensityElement; 
+	@FindBy(xpath = "//span[text()='Mark as Completed']")WebElement btnMarkAsCompleted;
+	@FindBy(xpath = "//div[@class='text-sm font-semibold']")WebElement successDialogElement;
 	@FindBy(xpath = "//span[text()='Completed']")WebElement btnSuccessMsgCompleted;
 	@FindBy(xpath = "//button[text()='Undo']")WebElement btnUndo;
 	
 	
 	public void Loginbtn() {
-		btnLogin.click();
 		
-		//wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-	//	wait.until(ExpectedConditions.visibilityOf(btnLogin)).click();	
+		btnLogin.click();
 	}
 	public void SignIn() {
 		
@@ -85,18 +78,41 @@ public class PremiumUserExerciseModule {
 		wait.until(ExpectedConditions.visibilityOf(exerciseOptionElement)).click();
 				
 	}
-	public String getText_btnViewFullSchedule() {
-
-		return btnViewFullSchedule.getText();
-	}
 	public void getViewFullSchedule() {
 		
 		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		wait.until(ExpectedConditions.visibilityOf(btnViewFullSchedule)).click();
 	}
+	public boolean areExerciseTabsVisible() {
+		
+        return btnWarmUp.isDisplayed()
+            && btnMainWorkout.isDisplayed()
+            && btnCoolDown.isDisplayed();
+    }
+	
+	public void clickBtnWarmUp() {
+		
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(btnWarmUp)).click();
+	}
+	public void clickBtnMainWorkout() {
+		
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(btnMainWorkout)).click();
+	}
+	public void clickBtnCoolDown() {
+		
+		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+		wait.until(ExpectedConditions.visibilityOf(btnCoolDown)).click();	
+	}
+	
 	public String getTitle() {
 
 		return titleTodayExerciseScheduleElement.getText();
+	}
+	public String getText_btnViewFullSchedule() {
+
+		return btnViewFullSchedule.getText();
 	}
 	public String getText_btnWarmUp() {
 
@@ -110,41 +126,183 @@ public class PremiumUserExerciseModule {
 
 		return btnCoolDown.getText();
 	}
-	
-	public void clickBtnWarmUp() {
-		
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOf(btnWarmUp)).click();
-		
-		exerciseName = exerciseNameElement.getText();
-		exerciseDescription = exerciseDescriptionElement.getText() ;
-		exerciseDuration = exerciseDurationElement.getText();
-		exerciseCalories = exerciseCaloriesElement.getText();
-		exerciseIntensity = exerciseIntensityElement.getText() ;		
-	}
-	
-	public void clickBtnMainWorkout() {
-		
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOf(btnMainWorkout)).click();
-		
-		exerciseName = exerciseNameElement.getText();
-		exerciseDescription = exerciseDescriptionElement.getText() ;
-		exerciseDuration = exerciseDurationElement.getText();
-		exerciseCalories = exerciseCaloriesElement.getText();
-		exerciseIntensity = exerciseIntensityElement.getText() ;		
-	}
-	public void clickBtnCoolDown() {
-		
-		wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.visibilityOf(btnCoolDown)).click();
-		
-		exerciseName = exerciseNameElement.getText();
-		exerciseDescription = exerciseDescriptionElement.getText() ;
-		exerciseDuration = exerciseDurationElement.getText();
-		exerciseCalories = exerciseCaloriesElement.getText();
-		exerciseIntensity = exerciseIntensityElement.getText() ;		
-	}
-	
+	public String getText_btnMarkAsCompleted() {
 
+		return btnMarkAsCompleted.getText();
+	}
+	
+	public String exerciseName_Warmup() {
+		
+		clickBtnWarmUp();
+
+		exerciseName = exerciseNameElement.getText();
+		
+		return exerciseName;
+	}
+	public String exerciseDescription_Warmup() {
+		
+		clickBtnWarmUp();
+		
+		exerciseDescription = exerciseDescriptionElement.getText();
+		
+		return exerciseDescription;
+	}
+	public void warnUpExerciseDetails() {
+		
+		try {
+			clickBtnWarmUp();
+			
+			exerciseDuration = exerciseDurationElement.getText();
+			exerciseCalories = exerciseCaloriesElement.getText();
+			exerciseIntensity = exerciseIntensityElement.getText() ;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}		
+	}
+	public void mainWorkoutExerciseDetails() {
+		
+		try {
+			clickBtnMainWorkout();
+			
+			exerciseDuration = exerciseDurationElement.getText();
+			exerciseCalories = exerciseCaloriesElement.getText();
+			exerciseIntensity = exerciseIntensityElement.getText() ;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}		
+	}
+	public void coolDownExerciseDetails() {
+	
+		try {
+			clickBtnCoolDown();
+
+			exerciseDuration = exerciseDurationElement.getText();
+			exerciseCalories = exerciseCaloriesElement.getText();
+			exerciseIntensity = exerciseIntensityElement.getText() ;
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}	
+	}
+
+	public String exerciseName_MainWorkout() {
+		
+		clickBtnMainWorkout();
+		
+		exerciseName = exerciseNameElement.getText();
+		
+		return exerciseName;
+	}
+	
+	public String exerciseDescription_MainWorkout() {
+		
+		clickBtnMainWorkout();
+		
+		exerciseDescription = exerciseDescriptionElement.getText();
+		return exerciseDescription;
+	}
+			
+	public String exerciseName_CoolDown() {
+		
+		clickBtnCoolDown();
+		
+		exerciseName = exerciseNameElement.getText();
+		
+		return exerciseName;
+	}
+	public String exerciseDescription_CoolDown() {
+		
+		clickBtnCoolDown();
+		
+		exerciseDescription = exerciseDescriptionElement.getText();
+		
+		return exerciseDescription;
+	}
+	
+	public void checkMarkAsCompleted(String exerciseTab) {
+		
+		try {
+			if (exerciseTab.equals("Warm Up")) {
+				
+				clickBtnWarmUp();
+				
+				wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollBy(0,800)", "");
+				actaulResultMarkAsCompleted = btnMarkAsCompleted.getText();		
+			}
+			else if (exerciseTab.equals("Main workout")) {
+				
+				clickBtnMainWorkout();
+				
+				wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollBy(0,800)", "");
+				actaulResultMarkAsCompleted = btnMarkAsCompleted.getText();
+			}
+			else
+			{
+				clickBtnCoolDown();
+				
+				wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollBy(0,800)", "");
+				actaulResultMarkAsCompleted = btnMarkAsCompleted.getText();
+				
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+	
+	}
+	public void checkSuccessDialog (String exerciseTab) {
+		
+		try {
+			if (exerciseTab.equals("Warm Up")) {
+				
+				clickBtnWarmUp();	
+				
+				wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+				wait.until(ExpectedConditions.visibilityOf(btnMarkAsCompleted)).click();
+				
+				wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollBy(0,800)", "");
+				actualResultSuccessDialog = successDialogElement.getText();
+			}
+			else if (exerciseTab.equals("Main Workout")) {
+				
+				clickBtnMainWorkout();
+				
+				wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+				wait.until(ExpectedConditions.visibilityOf(btnMarkAsCompleted)).click();
+				
+				wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollBy(0,600)", "");
+				actualResultSuccessDialog = successDialogElement.getText();
+			}
+			else
+			{
+				clickBtnCoolDown();
+				
+				wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+				wait.until(ExpectedConditions.visibilityOf(btnMarkAsCompleted)).click();
+				
+				wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+				JavascriptExecutor js = (JavascriptExecutor) driver;
+				js.executeScript("window.scrollBy(0,600)", "");
+				actualResultSuccessDialog = successDialogElement.getText();
+			}
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+	}
 }

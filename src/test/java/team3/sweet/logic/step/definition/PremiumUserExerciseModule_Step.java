@@ -8,161 +8,182 @@ import team3.sweet.logic.utils.LoggerLoad;
 import org.testng.Assert;
 
 public class PremiumUserExerciseModule_Step {
-	
+
 	PremiumUserExerciseModule objPremiumUserExerciseModule = new PremiumUserExerciseModule();
 	LoggerLoad logger = new LoggerLoad();
 	String expectedWarmUpDescription = "";
 	String expectedMainWorkoutDescription = "";
 	String expectedCoolDownDescription = "";
-	
-	
+
 	// Scenario - 1 - "View Full Schedule"
-	
+
 	@Given("User is on the homepage")
 	public void user_is_on_the_homepage() {
-		
+
 		LoggerLoad.info("You are on the Home page");
 		objPremiumUserExerciseModule.Loginbtn();
 		objPremiumUserExerciseModule.SignIn();
 	}
+
 	@When("User clicks the {string} option from the side panel")
 	public void user_clicks_the_option_from_the_side_panel(String string) {
-		
+
 		objPremiumUserExerciseModule.viewFullSchedule();
 	}
+
 	@Then("{string} button is displayed on the right")
 	public void button_is_displayed_on_the_right(String string) {
-		
-		Assert.assertEquals(objPremiumUserExerciseModule.getText_btnViewFullSchedule(),string);
+
+		Assert.assertEquals(objPremiumUserExerciseModule.getText_btnViewFullSchedule(), string);
 	}
-	
+
 	// Scenario - 2 - "Today's Exercise Schedule"
-	
+
 	@When("User clicks the {string} button")
 	public void user_clicks_the_button(String string) {
-	  
+
 		objPremiumUserExerciseModule.viewFullSchedule();
 		objPremiumUserExerciseModule.getViewFullSchedule();
 	}
+
 	@Then("User is redirected to {string} page")
 	public void user_is_redirected_to_page(String string) {
-	
-		Assert.assertEquals(objPremiumUserExerciseModule.getTitle(),string);
+
+		Assert.assertEquals(objPremiumUserExerciseModule.getTitle(), string);
 	}
 
-	// Scenario - 3 - "Warm Up" tab
-	
-	@Then("{string} tab is visible")
-	public void tab_is_visible(String string) {
-		
-	//	System.out.println(string + "\n");
-		String msg=objPremiumUserExerciseModule.getText_btnWarmUp();
-		System.out.println(msg+"\n");
-	//	Assert.assertEquals(msg,string); 
+	// Scenario - 3
+
+	@Then("user should see tabs {string}")
+	public void user_should_see_tabs(String string) {
+
+		Assert.assertTrue(objPremiumUserExerciseModule.areExerciseTabsVisible(), "Expected all tabs to be visible.");
+		LoggerLoad.debug("Verified all Exercise tabs are visible.");
 	}
 
-	// Scenario - 4 - "Main Workout" tab
-	
-	@Then("Exercise name is displayed under {string} tab")
-	public void exercise_name_is_displayed_under_tab(String string) {
-		
-	//	System.out.println(string + "\n");
-		String msg=objPremiumUserExerciseModule.getText_btnMainWorkout();
-		System.out.println(msg+"\n");
-	//	Assert.assertEquals(msg,string); 
-		
-	//	Assert.assertEquals(objPremiumUserExerciseModule.getText_btnMainWorkout(),string); 
+	// Scenario - 4
+
+	@Then("user should see {string}")
+	public void user_should_see(String expectedName) {
+
+		switch (expectedName) {
+
+		case "Gentle Arm Circles & Leg Swings":
+			String actualWarmUp_ExerciseName = objPremiumUserExerciseModule.exerciseName_Warmup();
+			LoggerLoad.debug("Actual text found for Exercise Name: " + actualWarmUp_ExerciseName);
+			Assert.assertEquals(expectedName, actualWarmUp_ExerciseName);
+			break;
+
+		case "Light Walking & Gentle Stretching":
+			String actualMainWorkOut_ExerciseName = objPremiumUserExerciseModule.exerciseName_MainWorkout();
+			LoggerLoad.debug("Actual text found for Height: " + actualMainWorkOut_ExerciseName);
+			Assert.assertEquals(expectedName, actualMainWorkOut_ExerciseName);
+			break;
+
+		case "Seated Breathing & Gentle Twists":
+			String actualCoolDown_ExerciseName = objPremiumUserExerciseModule.exerciseName_CoolDown();
+			LoggerLoad.debug("Actual text found for Weight: " + actualCoolDown_ExerciseName);
+			Assert.assertEquals(expectedName, actualCoolDown_ExerciseName);
+			break;
+
+		default:
+			Assert.fail("Unexpected element: " + expectedName);
+		}
+	}
+
+	// Scenario - 5
+
+	@Then("{string} is shown under the Exercise tab")
+	public void is_shown_under_the_exercise_tab(String expectedName) {
+
+	//	LoggerLoad.debug("Validating expected text in the Batch Page: " + expectedName);
+
+		switch (expectedName) {
+
+		case "Light arm circles forward and backward, followed by gentle leg swings forward and sideways to improve circulation and prepare muscles for activity. Focus on controlled movements.":
+			String actualWarmUp_ExerciseDescription = objPremiumUserExerciseModule.exerciseDescription_Warmup();
+			LoggerLoad.debug("Actual text found for Exercise Name: " + actualWarmUp_ExerciseDescription);
+			Assert.assertEquals(expectedName, actualWarmUp_ExerciseDescription);
+			break;
+
+		case "A combination of slow-paced walking and gentle stretching exercises. Start with 20 minutes of walking at a comfortable pace, followed by static stretches like hamstring stretches, calf stretches, and shoulder stretches. Hold each stretch for 20-30 seconds.":
+			String actualMainWorkOut_ExerciseDescription = objPremiumUserExerciseModule
+					.exerciseDescription_MainWorkout();
+			LoggerLoad.debug("Actual text found for Height: " + actualMainWorkOut_ExerciseDescription);
+			Assert.assertEquals(expectedName, actualMainWorkOut_ExerciseDescription);
+			break;
+
+		case "Seated deep breathing exercises to lower heart rate and relax the body. Followed by gentle spinal twists to improve flexibility. Inhale deeply, exhale slowly.":
+			String actualCoolDown_ExerciseDescription = objPremiumUserExerciseModule.exerciseDescription_CoolDown();
+			LoggerLoad.debug("Actual text found for Weight: " + actualCoolDown_ExerciseDescription);
+			Assert.assertEquals(expectedName, actualCoolDown_ExerciseDescription);
+			break;
+
+		default:
+			Assert.fail("Unexpected element: " + expectedName);
+		}
+	}
+
+	// Scenario - 6
+
+	@Then("{string},{string},{string} is displayed under {string} tab")
+	public void is_displayed_under_tab(String expectedDuration, String expectedCalories, String expectedIntensityLevel,
+			String exerciseTab) {
+
+		if (exerciseTab.equals("Warm Up")) {
+
+			objPremiumUserExerciseModule.warnUpExerciseDetails();
+			
+		} else if (exerciseTab.equals("Main Workout")) {
+
+			objPremiumUserExerciseModule.mainWorkoutExerciseDetails();
+			
+		} else {
+
+			objPremiumUserExerciseModule.coolDownExerciseDetails();
+		}
+
+		String actualDuration = objPremiumUserExerciseModule.exerciseDuration;
+		String actualCalories = objPremiumUserExerciseModule.exerciseCalories;
+		String actualIntensityLevel = objPremiumUserExerciseModule.exerciseIntensity;
+		Assert.assertEquals(expectedDuration, actualDuration);
+		Assert.assertEquals(expectedCalories, actualCalories);
+		Assert.assertEquals(expectedIntensityLevel, actualIntensityLevel);
 	}
 	
-	// Scenario - 5 - "Cool Down" tab
-
-	@Then("Description is shown below the Exercise name under {string}")
-	public void description_is_shown_below_the_exercise_name_under(String string) {
+	@Then("{string} button is displayed for all three {string} sections")
+	public void button_is_displayed_for_all_three_sections(String expectedResultMarkAsCompleted, String exerciseTab) {
 		
-	//	System.out.println(string + "\n");
-		String msg=objPremiumUserExerciseModule.getText_btnCoolDown();
-		System.out.println(msg+"\n");
-	//	Assert.assertEquals(msg,string); 
-		
-	//	Assert.assertEquals(objPremiumUserExerciseModule.getText_btnCoolDown(),string); 
+		objPremiumUserExerciseModule.checkMarkAsCompleted(exerciseTab);
+		String actualResultMarkAsCompleted = objPremiumUserExerciseModule.actaulResultMarkAsCompleted;
+		System.out.println(expectedResultMarkAsCompleted+":");
+		Assert.assertEquals(expectedResultMarkAsCompleted, actualResultMarkAsCompleted);
 	}
-
-	// Scenario - 6 - Exercise name under "Warm Up" tab
 	
-	@When("User clicks on the Warm Up tab of the {string} option from the side panel")
-	public void user_clicks_on_the_warm_up_tab_of_the_option_from_the_side_panel(String string) {
+	@When("User clicks the {string} button for all three {string} sections")
+	public void user_clicks_the_button_for_all_three_sections(String string, String exerciseTab) {
 		
 		objPremiumUserExerciseModule.viewFullSchedule();
-		objPremiumUserExerciseModule.clickBtnWarmUp();
+		objPremiumUserExerciseModule.checkSuccessDialog(exerciseTab);
 	}
-	
-	@Then("Duration is displayed under {string} tab")
-	public void duration_is_displayed_under_tab(String string) {
+
+	@Then("Success dialog is shown for all three {string} sections")
+	public void success_dialog_is_shown_for_all_three_sections(String exerciseTab) {
 		
-		string = "Gentle Arm Circles and Leg Swings";
-		Assert.assertEquals(objPremiumUserExerciseModule.exerciseName,string); 
-	}
-	
-	// Scenario - 7 - Exercise name under "Main Workout" tab
-
-	@When("User clicks on the Main Workout tab of the {string} option from the side panel")
-	public void user_clicks_on_the_main_workout_tab_of_the_option_from_the_side_panel(String string) {
-		
-		objPremiumUserExerciseModule.viewFullSchedule();
-		objPremiumUserExerciseModule.clickBtnMainWorkout();
-	}
-	
-	@Then("Calories are displayed under {string} tab")
-	public void calories_are_displayed_under_tab(String string) {
-		
-		string = "Light Walking and Chair Yogas";
-		Assert.assertEquals(objPremiumUserExerciseModule.exerciseName,string); 
-	}
-	
-	// Scenario - 8 - Exercise name under "Cool Down" tab
-
-	@When("User clicks on the Cool Down tab of the {string} option from the side panel")
-	public void user_clicks_on_the_cool_down_tab_of_the_option_from_the_side_panel(String string) {
-	   
-		objPremiumUserExerciseModule.viewFullSchedule();
-		objPremiumUserExerciseModule.clickBtnCoolDown();
-	}
-	
-	@Then("Intensity level is displayed under {string} tab")
-	public void intensity_level_is_displayed_under_tab(String string) {
-	   
-		string = "Static Stretching";
-		Assert.assertEquals(objPremiumUserExerciseModule.exerciseName,string); 
+		String actualResultSuccessDialog= objPremiumUserExerciseModule.actualResultSuccessDialog;
+		Assert.assertEquals("Success!", actualResultSuccessDialog);
 	}
 
-	// Scenario - 9
-	@Then("{string} button is displayed for all three sections")
-	public void button_is_displayed_for_all_three_sections(String string) {
+	@Then("Button changes to {string} all three {string} sections")
+	public void button_changes_to_all_three_sections(String string, String string2) {
+	    
+	}
+
+	@Then("Undo option is visible for all three {string} sections")
+	public void undo_option_is_visible_for_all_three_sections(String string) {
 	   
 	}
+
 	
-	// Scenario - 10
-
-	@Then("Success dialog is shown")
-	public void success_dialog_is_shown() {
-	   
-	}
-	
-	// Scenario - 11
-
-	@Then("Button changes to {string}")
-	public void button_changes_to(String string) {
-	   
-	}
-	
-	// Scenario - 12
-
-	@Then("Undo option is visible")
-	public void undo_option_is_visible() {
-	 
-	}
-
-
-
 
 }
