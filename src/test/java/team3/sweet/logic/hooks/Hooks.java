@@ -43,8 +43,8 @@ public class Hooks {
 	@After
 	public static void afterAll() {
 
-		DriverFactory.closeBrowser();
-		LoggerLoad.info("closing browser");
-
+//		DriverFactory.closeBrowser();
+//		LoggerLoad.info("closing browser");
+////
 	}
 }
