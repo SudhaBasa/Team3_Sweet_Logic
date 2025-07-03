@@ -3,6 +3,7 @@ package team3.sweet.logic.step.definition;
 import static org.testng.Assert.assertEquals;
 
 
+
 import static org.testng.Assert.assertTrue;
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +15,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import team3.sweet.logic.page.objects.CommonFeatureDashBoardPage_Page;
 import team3.sweet.logic.page.objects.CommonFeatureforHomePage_Page;
+import team3.sweet.logic.page.objects.HomePageFeatureFreeUser_Page;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -25,12 +28,14 @@ public class CommonFeatureforHomePage_Step {
 	
 	WebDriver driver = DriverFactory.getdriver();
 	
-	CommonFeatureforHomePage_Page CFHP = new CommonFeatureforHomePage_Page(driver);
+	CommonFeatureDashBoardPage_Page CFDP = new CommonFeatureDashBoardPage_Page(driver);
+	CommonFeatureforHomePage_Page CFHP = new CommonFeatureforHomePage_Page(driver);	
+	
 		
-		private WebDriverWait wait;
-			
-	@Given("User is in password auth page")
-	public void user_is_in_password_auth_page() {
+		private WebDriverWait wait; 
+				
+	@Given("User is in password auth page for FreeUser")
+	public void user_is_in_password_auth_page_for_free_user() {
 		driver.get( ConfigReader.getProperty("url"));
 		CFHP.LoginPage();
 		
@@ -266,10 +271,10 @@ public class CommonFeatureforHomePage_Step {
 		Assert.assertTrue("Expected 'View Full Plan' Button to be visible ",
 				CFHP.isViewfullplanBtnVisible());  
 	}
-
-	@Given("User is in home page")
-	public void user_is_in_home_page() {
-		CFHP.Login();  
+	
+	@Given("User is in home page for FreeUser")
+	public void user_is_in_home_page_for_free_user() {
+		CFHP.Login(); 
 	}
 
 	@When("User clicks on the {string} section")
@@ -335,13 +340,14 @@ public class CommonFeatureforHomePage_Step {
 	    Assert.assertTrue("Expected Dinner section text to contain 'Snacks', but found: " + text,
 	               text.contains("Snacks"));         
 	}
-
-	@When("User clicks meal section")
-	public void user_clicks_meal_section() 
-	throws InterruptedException {
+	
+	@When("User clicks meal section in Freeuser Page")
+	public void user_clicks_meal_section_in_freeuser_page() 
+	throws InterruptedException{
 		CFHP.BreakfastPage(); 
 		Thread.sleep(2000); 
 	}
+
 
 	@Then("User should see dish title")
 	public void user_should_see_dish_title() {
