@@ -96,8 +96,6 @@ public class PremiumUserExerciseModule_Step {
 	@Then("{string} is shown under the Exercise tab")
 	public void is_shown_under_the_exercise_tab(String expectedName) {
 
-	//	LoggerLoad.debug("Validating expected text in the Batch Page: " + expectedName);
-
 		switch (expectedName) {
 
 		case "Light arm circles forward and backward, followed by gentle leg swings forward and sideways to improve circulation and prepare muscles for activity. Focus on controlled movements.":

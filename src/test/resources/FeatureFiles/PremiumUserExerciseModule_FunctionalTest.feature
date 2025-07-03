@@ -45,7 +45,7 @@ Background: User is Logged into the app
 #Given User is on the homepage
 #When User clicks the "Exercise" option from the side panel
 #Then "<Exercise Description>" is shown under the Exercise tab
-#
+
 #Examples:
 #
        #|Exercise Description          							|
