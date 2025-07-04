@@ -1,7 +1,7 @@
 Feature: Onboarding Form Validation
 
   Background: 
-    User successfully uploaded blood report
+   Given User successfully uploaded blood report
 
 
   Scenario: Verify presence of text field

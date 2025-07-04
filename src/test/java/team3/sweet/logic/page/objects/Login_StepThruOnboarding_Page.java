@@ -1,16 +1,10 @@
 package team3.sweet.logic.page.objects;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.*;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import org.jsoup.internal.FieldsAreNonnullByDefault;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -166,7 +160,7 @@ public class Login_StepThruOnboarding_Page {
 	@FindBy(xpath = "//span[contains(text(),'Mediterranean 🥙')]")
 	WebElement mediterraneanOnStep7;
 
-	@FindBy(xpath = "//h1[normalize-space()='Any medical quirks worth mentioning?']")
+	@FindBy(xpath = "//h1[normalize-space()='Allergic to any foods?']")
 	WebElement step8HeadingText;
 
 	@FindBy(xpath = "//span[contains(text(),'Yes ✅')]")
@@ -196,24 +190,142 @@ public class Login_StepThruOnboarding_Page {
 	@FindBy(xpath = "//h1[normalize-space()='Pick your pace: chill stroll or marathon magic?']")
 	WebElement step11HeadingText;
 
-	// span[contains(text(),'Medium 💪')]
-
 	@FindBy(xpath = "//span[contains(text(),'Medium 💪')]")
 	WebElement excerciseOption;
 
 	@FindBy(xpath = "//h1[contains(text(),'Final Step- What’s your latest HbA1c number?!')]")
 	WebElement step12HeadingText;
-	
 
 	@FindBy(xpath = "//input[@placeholder='Enter your HbA1c value (e.g., 7.0)']")
 	WebElement placeholderTextOn12;
-	
-//	
-//	public String getPlaceholderTextOn12() {
-//		return getDomAttribute(placeholderTextOn12);
+
+	@FindBy(xpath = "//p[text()='Please enter a value between 4.0 and 15.0']")
+	WebElement textOnStep12;
+
+	@FindBy(xpath = "//button[normalize-space()='Continue']")
+	WebElement continueBtnOnStep12;
+
+	@FindBy(xpath = "//p[text()='HbA1c measures your average blood sugar levels over the past 2-3 months. This important value helps us create a personalized diabetes management plan tailored specifically to your needs.']")
+	WebElement descrptionTextOnStep12;
+
+	@FindBy(xpath = "//input[@placeholder='Enter your HbA1c value (e.g., 7.0)']")
+	WebElement hba1cInputField;
+
+	@FindBy(xpath = "//div[text()='HbA1c value 4.5% stored successfully']")
+	WebElement sucessMsgOnStep12;
+
+	@FindBy(xpath = "//h2[contains(text(),'Getting you all set—like a VIP pass to better heal')]")
+	WebElement loadingIndicator;
+
+	@FindBy(xpath = "//p[text()='Just a moment while we personalize your experience']")
+	WebElement loadingIndicatorSubText;
+
+	@FindBy(xpath = "//button[text()='Upgrade to Premium']")
+	WebElement upgradeToPremiumButton;
+
+	public String getLoadingIndicatorSubText() {
+
+		return loadingIndicatorSubText.getText();
+	}
+
+	public String getLoadingIndicatorMsg() {
+
+		return loadingIndicator.getText();
+	}
+
+	public boolean isUpgradeToPremiumBtnDisplayed() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfAllElements(upgradeToPremiumButton));
+		return upgradeToPremiumButton.isDisplayed();
+	}
+
+	public boolean isLoadingIndicatorDisplayed() {
+		return loadingIndicator.isDisplayed();
+	}
+
+	public String getSucessMsgOnStep12() {
+		return sucessMsgOnStep12.getText();
+	}
+
+	public void clickContinueBtnOnStep12() {
+		CommonUtils.clickElement(driver, continueBtnOnStep12);
+
+	}
+
+	public double enterAndGetHba1cValue(String value) {
+
+		hba1cInputField.clear();
+		enteringHBA1cValue(4.5);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfAllElements(hba1cInputField));
+
+		String actualValue = hba1cInputField.getDomAttribute("value");
+
+		if (actualValue == null || actualValue.trim().isEmpty()) {
+			throw new IllegalStateException("Input field value is empty.");
+		}
+
+		return Double.parseDouble(actualValue);
+	}
+
+//	public double getValidHba1cValue() {
+//		
+//		String value = hba1cInputField.getDomAttribute("value");
+//		
+//		
+//		
+	////
+////	    if (value == null || value.trim().isEmpty()) {
+////	        throw new IllegalStateException("HbA1c input field is empty or not set yet.");
+////	    }
+////
+
+// return Double.parseDouble(value);
+	//////
+////		String enteredValue = hba1cInputField.getDomAttribute("value");
+////
+////		// Convert to decimal (double or BigDecimal)
+////		double decimalValue = Double.parseDouble(enteredValue);
+////		System.out.println("Entered decimal value: " + decimalValue);
 //	}
 
-	
+	public void enteringHBA1cValue(double value) {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfAllElements(hba1cInputField));
+
+		hba1cInputField.sendKeys(String.valueOf(value));
+
+		// System.out.println("Value after entering:" +
+		// hba1cInputField.getDomAttribute("value") + ":");
+	}
+
+	public WebElement getHBA1cValue() {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfAllElements(hba1cInputField));
+
+		return hba1cInputField;
+	}
+
+	public String getDescriptionTextOnStep12() {
+		return descrptionTextOnStep12.getText();
+	}
+
+	public boolean isContinueBtnDisplayed() {
+		return continueBtnOnStep12.isDisplayed();
+
+	}
+
+	public String getTextOnStep12() {
+		return textOnStep12.getText();
+	}
+
+	public String getPlaceholderTextOn12() {
+
+		return placeholderTextOn12.getDomAttribute("placeholder");
+
+	}
 
 	public String getStep12HeadingText() {
 		return step12HeadingText.getText();
@@ -398,6 +510,7 @@ public class Login_StepThruOnboarding_Page {
 	}
 
 	public String getStep7HeadingText() {
+		
 		return step7HeadingText.getText();
 	}
 
@@ -438,7 +551,6 @@ public class Login_StepThruOnboarding_Page {
 	public WebElement getWeightInPoundsEle(int pounds) {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		System.out.println("Weight: " + pounds);
 		try {
 			return wait.until(ExpectedConditions
 					.presenceOfElementLocated(By.xpath("//span[normalize-space()='" + pounds + " lbs']/..")));
@@ -521,7 +633,6 @@ public class Login_StepThruOnboarding_Page {
 	public WebElement getWeightInKilogramEle(int kilogram) {
 
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-		System.out.println("Weight: " + kilogram);
 		try {
 			return wait.until(ExpectedConditions
 					.presenceOfElementLocated(By.xpath("//span[normalize-space()='" + kilogram + " kg']/..")));
@@ -553,7 +664,7 @@ public class Login_StepThruOnboarding_Page {
 
 	public WebElement getOptionInFeet(int feet, int inches) {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		try {
 			return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
@@ -650,6 +761,8 @@ public class Login_StepThruOnboarding_Page {
 	}
 
 	public String tapOptionText(int index) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfAllElements(tabOptionsOnStep4));
 
 		return tabOptionsOnStep4.get(index).getText();
 
@@ -690,6 +803,22 @@ public class Login_StepThruOnboarding_Page {
 		} catch (Exception e) {
 			System.out.println("Toast message did not appear in time.");
 		}
+
+	}
+
+	public WebElement getAgeOption(int age) {
+
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOfAllElements(ageOptions));
+
+		try {
+			return wait.until(ExpectedConditions
+					.presenceOfElementLocated(By.xpath("//span[normalize-space()='" + age + " years']/..")));
+
+		} catch (Exception e) {
+			System.out.println("Toast message did not appear in time.");
+		}
+		return null;
 
 	}
 
@@ -864,4 +993,132 @@ public class Login_StepThruOnboarding_Page {
 		return step1HeadingText.getText();
 	}
 
+	public void onboardingTillStep11() {
+
+		// lobp.completeOnboarding();
+		clickOnStepThruOnboardingBtn();
+		clickOnOption2OnStep1();
+		clickFemaleBtn(); // on step 2
+		selectRandomAgeBetween30and49();// step 3
+		clickOnFeetAndInchesBtn();
+		getOptionInFeet(6, 2).click(); // step4
+		clickOnPoundsBtn();
+		selectRandomWeightInPounds();// step5
+		clickOnalInclusiveBtnOnStep6();// step6
+		clickOnMediterraneanOnStep7(); // step7
+		clickOnYesOnStep8();// step 8
+		clickOnDairyCheckBox();// step9
+		clickOnContinueButton();// step9
+		selectCheckbox(3);
+		clickOnContinueButton();// step 10
+		clickOnExcerciseOption();// step11
+	}
+
+	public void onboardingTillStep3() {
+
+		clickOnStepThruOnboardingBtn();
+		clickOnOption2OnStep1();
+		clickFemaleBtn(); // on step 2
+		selectRandomAgeBetween30and49();// step 3
+	}
+
+	public void onboardingTillStep4() {
+		clickOnStepThruOnboardingBtn();
+		clickOnOption2OnStep1();
+		clickFemaleBtn(); // on step 2
+		selectRandomAgeBetween30and49();// step 3
+		clickOnFeetAndInchesBtn();
+		getOptionInFeet(6, 2).click(); // step4
+	}
+
+	public void onboardingTillStep5() {
+		clickOnStepThruOnboardingBtn();
+		clickOnOption2OnStep1();
+		clickFemaleBtn(); // on step 2
+		selectRandomAgeBetween30and49();// step 3
+		clickOnFeetAndInchesBtn();
+		getOptionInFeet(6, 2).click(); // step4
+		clickOnPoundsBtn();
+		selectRandomWeightInPounds();// step5
+
+	}
+
+	public void onboardingTillStep6() {
+
+		clickOnStepThruOnboardingBtn();
+		clickOnOption2OnStep1();
+		clickFemaleBtn(); // on step 2
+		selectRandomAgeBetween30and49();// step 3
+		clickOnFeetAndInchesBtn();
+		getOptionInFeet(6, 2).click(); // step4
+		clickOnPoundsBtn();
+		selectRandomWeightInPounds();// step5
+		clickOnalInclusiveBtnOnStep6();// step6
+
+	}
+
+	public void onboardingTillStep7() {
+		clickOnStepThruOnboardingBtn();
+		clickOnOption2OnStep1();
+		clickFemaleBtn(); // on step 2
+		selectRandomAgeBetween30and49();// step 3
+		clickOnFeetAndInchesBtn();
+		getOptionInFeet(6, 2).click(); // step4
+		clickOnPoundsBtn();
+		selectRandomWeightInPounds();// step5
+		clickOnalInclusiveBtnOnStep6();// step6
+		clickOnMediterraneanOnStep7(); // step7
+	}
+
+	public void onboardingTillStep9() {
+
+		clickOnStepThruOnboardingBtn();
+		clickOnOption2OnStep1();
+		clickFemaleBtn(); // on step 2
+		selectRandomAgeBetween30and49();// step 3
+		clickOnFeetAndInchesBtn();
+		getOptionInFeet(6, 2).click(); // step4
+		clickOnPoundsBtn();
+		selectRandomWeightInPounds();// step5
+		clickOnalInclusiveBtnOnStep6();// step6
+		clickOnMediterraneanOnStep7(); // step7
+		clickOnYesOnStep8();// step 8
+
+	}
+
+	public void onboardingTillStepTen() {
+		clickOnStepThruOnboardingBtn();
+		clickOnOption2OnStep1();
+		clickFemaleBtn(); // on step 2
+		selectRandomAgeBetween30and49();// step 3
+		clickOnFeetAndInchesBtn();
+		getOptionInFeet(6, 2).click(); // step4
+		clickOnPoundsBtn();
+		selectRandomWeightInPounds();// step5
+		clickOnalInclusiveBtnOnStep6();// step6
+		clickOnMediterraneanOnStep7(); // step7
+		clickOnYesOnStep8();// step 8
+		clickOnDairyCheckBox();// step9
+		clickOnContinueButton();// step9
+	}
+
+	public void onboardingTillStep10() {
+
+		// lobp.completeOnboarding();
+		clickOnStepThruOnboardingBtn();
+		clickOnOption2OnStep1();
+		clickFemaleBtn(); // on step 2
+		selectRandomAgeBetween30and49();// step 3
+		clickOnFeetAndInchesBtn();
+		getOptionInFeet(6, 2).click(); // step4
+		clickOnPoundsBtn();
+		selectRandomWeightInPounds();// step5
+		clickOnalInclusiveBtnOnStep6();// step6
+		clickOnMediterraneanOnStep7(); // step7
+		clickOnYesOnStep8();// step 8
+		clickOnDairyCheckBox();// step9
+		clickOnContinueButton();// step9
+		selectCheckbox(3);
+		clickOnContinueButton();// step 10
+	}
 }

@@ -1,6 +1,6 @@
 Feature: Onboarding Step 2 UI
 Background:
-User should have completed until step 1
+Given User should have completed until step 1
 
 Scenario: Verify option selection in step 2
 Given: User is in Step 2 for onboarding process
