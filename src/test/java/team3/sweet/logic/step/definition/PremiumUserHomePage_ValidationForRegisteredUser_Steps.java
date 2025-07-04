@@ -4,26 +4,30 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import team3.sweet.logic.page.objects.PremiumUserHomePage;
+import team3.sweet.logic.utils.LoggerLoad;
 
-public class PremiumUserHomePage_ValidationForRegisteredUser_Steps  {
-	
-	PremiumUserHomePage premiumUser_HPobj=new PremiumUserHomePage();
-	
-//	@Given("User is in password auth page")
-//	public void user_is_in_password_auth_page() {
-//		premiumUser_HPobj.Loginbtn();
-//		
-//	}
+public class PremiumUserHomePage_ValidationForRegisteredUser_Steps {
 
-	/*
-	 * @When("User clicks sign in after entering password") public void
-	 * user_clicks_sign_in_after_entering_password() { premiumUser_HPobj.SignIn(); }
-	 */
+	PremiumUserHomePage premiumUser_HPobj = new PremiumUserHomePage();
 
+	/*@Given("User is Logged into the app")
+	 public void user_is_logged_into_the_app() {
+
+
+		premiumUser_HPobj.Loginbtn();
+		premiumUser_HPobj.SignIn();
+	 }
+	 
+	 @Given("User is on the homepage")
+	 public void user_is_on_the_homepage() {
+	  
+	  LoggerLoad.info("You are on the Home Page");
+	 }
+*/
 	@Then("User should see the navigation bar displaying items in the order: Home,Logbook,Dashboard,Education")
 	public void user_should_see_the_navigation_bar_displaying_items_in_the_order_home_logbook_dashboard_education() {
 		premiumUser_HPobj.getNavigationSequence();
-		
+
 	}
 
 	@Then("User should see flashing challenge yourself button")
@@ -80,37 +84,37 @@ public class PremiumUserHomePage_ValidationForRegisteredUser_Steps  {
 	public void user_should_see_button_options(Integer int1) {
 		premiumUser_HPobj.allButtonOptionsPresence();
 	}
+
 	
-	/*
-	 * @Then("User should see {string}") public void user_should_see(String string)
-	 * { premiumUser_HPobj.buttonOrder(string);
-	 * 
-	 * }
-	 * 
-	 * @When("When User clicks sign in after entering password") public void
-	 * when_user_clicks_sign_in_after_entering_password() {
-	 * premiumUser_HPobj.SignIn(); }
-	 * 
-	 * @Then("User should see all the fields under {string} below Record New Data")
-	 * public void user_should_see_all_the_fields_under_below_record_new_data(String
-	 * string) { premiumUser_HPobj.buttonOrder(string); }
-	 * 
-	 * 
-	 * @Then("Activity icon should be present in blood glucose") public void
-	 * activity_icon_should_be_present_in_blood_glucose() {
-	 * premiumUser_HPobj.bloodGlucoseIcon(); }
-	 * 
-	 * @Then("Running icon should be present in Physical activity") public void
-	 * running_icon_should_be_present_in_physical_activity() {
-	 * premiumUser_HPobj.physicalActivityIcon(); }
-	 * 
-	 * @Then("Pizza icon should be present in food intake") public void
-	 * pizza_icon_should_be_present_in_food_intake() {
-	 * premiumUser_HPobj.foodIntakeIcon(); }
-	 * 
-	 * @Then("Pill icon should be present in medication") public void
-	 * pill_icon_should_be_present_in_medication() {
-	 * premiumUser_HPobj.medicationIcon(); }
-	 */
+	  @Then("User should see {string}") public void user_should_see(String string)
+	  { premiumUser_HPobj.buttonOrder(string);
+	  
+	  }
+	  
+	  @When("When User clicks sign in after entering password") public void
+	  when_user_clicks_sign_in_after_entering_password() {
+	  premiumUser_HPobj.SignIn(); }
+	  
+	  @Then("User should see all the fields under {string} below Record New Data")
+	 public void user_should_see_all_the_fields_under_below_record_new_data(String
+	  string) { premiumUser_HPobj.buttonOrder(string); }
+	  
+	  
+	  @Then("Activity icon should be present in blood glucose") public void
+	  activity_icon_should_be_present_in_blood_glucose() {
+	  premiumUser_HPobj.bloodGlucoseIcon(); }
+	  
+	  @Then("Running icon should be present in Physical activity") public void
+	  running_icon_should_be_present_in_physical_activity() {
+	  premiumUser_HPobj.physicalActivityIcon(); }
+	  
+	  @Then("Pizza icon should be present in food intake") public void
+	  pizza_icon_should_be_present_in_food_intake() {
+	  premiumUser_HPobj.foodIntakeIcon(); }
+	  
+	  @Then("Pill icon should be present in medication") public void
+	  pill_icon_should_be_present_in_medication() {
+	 premiumUser_HPobj.medicationIcon(); }
+	 
 
 }

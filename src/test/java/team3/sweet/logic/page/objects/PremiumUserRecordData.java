@@ -37,7 +37,7 @@ public class PremiumUserRecordData {
 	@FindBy(xpath ="//*[@id=\"radix-:rn:\"]/div/div/div/div/div[2]/button[1]") WebElement physicalActivityPreviousDateOption;
 	@FindBy(xpath ="//*[@id=\"radix-:rn:\"]/div/div/div/div/div[2]/button[2]") WebElement physicalActivityNextDateOption;
 	
-	// food Intake Validation
+	
 	@FindBy(linkText = "Food Intake Tracker") WebElement foodIntakeTitle;
 	@FindBy(linkText = "Track what you eat to manage your diabetes better") WebElement foodIntakeSubText;
 	@FindBy(xpath = "//*[@id=\"radix-:rh:\"]/div[2]/div/div/div") WebElement foodIntakeButtonsPresence;
