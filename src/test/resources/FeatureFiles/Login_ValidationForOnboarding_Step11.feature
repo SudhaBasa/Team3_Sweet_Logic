@@ -22,7 +22,7 @@ Feature: Validation for onboarding step 11
   Scenario: Verify the subtext in step 11
     Given User is in step ten
     When User clicks continue in step ten
-    Then User should see subtext "Select your preferred exercise intensity level"
+    Then User should see subtext. "Select your preferred exercise intensity level"
 
   Scenario: Verify back button in step 11
     Given User is in step ten

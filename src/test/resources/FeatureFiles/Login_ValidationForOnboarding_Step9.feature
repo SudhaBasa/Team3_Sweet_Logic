@@ -27,7 +27,7 @@ Feature: Validation for Onboarding step 9
   Scenario: Verify subtext in step 9
     Given User is in step eight
     When User selects option yes in step eight
-    Then User should see subtext "Select all that apply"
+    Then User should see subtext. "Select all that apply"
 
   Scenario: Confirm the progress bar displays "Step 9 of 12"
     Given User is in step eight

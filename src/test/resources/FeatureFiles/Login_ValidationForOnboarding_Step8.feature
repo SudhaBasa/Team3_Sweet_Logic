@@ -16,7 +16,7 @@ Feature: Validation for onboarding step 8
   Scenario: Verify subtext for step 8 is visible
     Given User is in step seven
     When User selects from one of the cuisine options in step seven
-    Then User should see subtext "Select yesif you have any food allergies"
+    Then User should see subtext. "Select yesif you have any food allergies"
 
   Scenario: Verify back button is visible in step 8
     Given User is in step seven
