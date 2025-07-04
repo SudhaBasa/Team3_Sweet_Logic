@@ -48,19 +48,19 @@ private WebDriverWait wait;
 		CFHP.Login();
 		CFDP.NavigatetoDashBoardPage();
 	}
-
-	@Then("User should see the {string} message")
-	public void user_should_see_the_message(String string) {
+	
+	@Then("User should see the {string} message in Homepage common User")
+	public void user_should_see_the_message_in_homepage_common_user(String string) {
 		String actualWelcomeText = CFDP.WelcomeMsgWithUserName(); 
 	    String expectedUsername = ConfigReader.getProperty("Freeusername");
 
 	    Assert.assertTrue("Expected welcome message to contain username '" + expectedUsername +
 	               "' but found: " + actualWelcomeText,
-	               actualWelcomeText.toLowerCase().contains(expectedUsername.toLowerCase()));   
+	               actualWelcomeText.toLowerCase().contains(expectedUsername.toLowerCase()));     
 	}
-
-	@Then("User should see the text {string}")
-	public void user_should_see_the_text(String expectedText) {
+	
+	@Then("User should see the text {string} in Homepage common User")
+	public void user_should_see_the_text_in_homepage_common_user(String expectedText) {
 		String actualText = CFDP.WelcomeMsgText();
 	    System.out.println("Actual welcome sub text: " + actualText);
 	    assertEquals(expectedText, actualText);
@@ -79,16 +79,15 @@ private WebDriverWait wait;
 	    System.out.println("Actual Account Information Text: " + actualText);
 	    assertEquals(expectedText, actualText);  
 	}
-	
-	@Then("User should see Save Changes button")
-	public void user_should_see_save_changes_button() {
+		
+	@Then("User should see Save Changes button in commanfeature dashborad")
+	public void user_should_see_save_changes_button_in_commanfeature_dashborad() {
 		CFDP.isSavechangesBtnVisible();
 		LoggerLoad.info("Save Changes Button is Visible");  
 	}
 
-	@Then("User should see all the fields under {string} section")
-	public void user_should_see_all_the_fields_under_section(String expectedText) {
-
+	@Then("User should see all the fields under {string} section in commanfeature dashborad")
+	public void user_should_see_all_the_fields_under_section_in_commanfeature_dashborad(String expectedText) {
 		LoggerLoad.debug("Validating expected text in the Batch Page: " + expectedText);
 
 		switch (expectedText) {
@@ -132,8 +131,7 @@ private WebDriverWait wait;
 		        Assert.fail("Unexpected element: " + expectedText);
 		}
 	}
-
-
+	
 	@Given("User is in Dashboard page for FreeUser")
 	public void user_is_in_dashboard_page_for_free_user() {
 		CFHP.Login();
@@ -151,8 +149,8 @@ private WebDriverWait wait;
 		CFDP.ClickSavechanges();
 	}
 
-	@Then("User should see that entered age is displayed in that Age field")
-	public void user_should_see_that_entered_age_is_displayed_in_that_age_field() {
+	@Then("User should see that entered age is displayed in that Age field in commonfeature Dashboard page")
+	public void user_should_see_that_entered_age_is_displayed_in_that_age_field_in_commonfeature_dashboard_page() {
 		String actualAge = CFDP.GetAgeValue();
 	    LoggerLoad.debug("Actual age value in field: " + actualAge);
 
@@ -193,9 +191,8 @@ private WebDriverWait wait;
 	public void user_clicks_the_dropdown_of_exercise_routine_level() {
 		CFDP.ClickDrpdownExcerciseroutine();
 	}
-
-	@Then("User should see the dropdown with options {string}")
-	public void user_should_see_the_dropdown_with_options( String expectedText) {
+	@Then("User should see the dropdown with options {string} in common feature Dashboard page")
+	public void user_should_see_the_dropdown_with_options_in_common_feature_dashboard_page(String expectedText) {
 		LoggerLoad.debug("Validating expected DropDown Options in Excercise Routine Level: " + expectedText);
 
 		switch (expectedText) {
@@ -220,17 +217,15 @@ private WebDriverWait wait;
 		    default:
 		        Assert.fail("Unexpected element: " + expectedText);
 		}
-	} 
-	
-
-
-	@When("User clicks the dropdown of Cuisine Preferences")
-	public void user_clicks_the_dropdown_of_cuisine_preferences() {
+	}
+		
+	@When("User clicks the dropdown of Cuisine Preferences in common feature Dashboard page")
+	public void user_clicks_the_dropdown_of_cuisine_preferences_in_common_feature_dashboard_page() {
 		CFDP.ClickDrpdownCusinepreference();
 	}
 
-	@Then("User should see the dropdown with list of cuisine types {string}")
-	public void user_should_see_the_dropdown_with_list_of_cuisine_types(String expectedText) {
+	@Then("User should see the dropdown with list of cuisine types {string} in common feature Dashboard page")
+	public void user_should_see_the_dropdown_with_list_of_cuisine_types_in_common_feature_dashboard_page(String expectedText) {
 		LoggerLoad.debug("Validating expected DropDown Options in Cusine Prefernce: " + expectedText);
 
 		switch (expectedText) {
@@ -278,13 +273,13 @@ private WebDriverWait wait;
 		}
 	} 
 	
-	@When("User clicks the dropdown of Food Allergies")
-	public void user_clicks_the_dropdown_of_food_allergies() {
+	@When("User clicks the dropdown of Food Allergies in common feature Dashboard page")
+	public void user_clicks_the_dropdown_of_food_allergies_in_common_feature_dashboard_page() {
 		CFDP.ClickDrpdownFoodAllergies();
 	}
 
-	@Then("User should see the dropdown list of common allergy options {string}")
-	public void user_should_see_the_dropdown_list_of_common_allergy_options(String expectedOption) {
+	@Then("User should see the dropdown list of common allergy options {string} in common feature Dashboard page")
+	public void user_should_see_the_dropdown_list_of_common_allergy_options_in_common_feature_dashboard_page(String expectedOption) {	
 	    List<String> actualOptions = CFDP.getFoodAllergyOptionTexts();
 	    Assert.assertTrue(
 	        "Expected option '" + expectedOption + "' not found in dropdown. Actual options: " + actualOptions,
@@ -292,8 +287,8 @@ private WebDriverWait wait;
 	    );
 	}
 
-	@When("User edit age as {string}, weight as {string}, height as {string} and click Save Changes")
-	public void user_edit_age_as_weight_as_height_as_and_click_save_changes(String Age, String Weight, String Height) 
+	@When("User edit age as {string}, weight as {string}, height as {string} and click Save Changes in common feature Dashboard page")
+	public void user_edit_age_as_weight_as_height_as_and_click_save_changes_in_common_feature_dashboard_page(String Age, String Weight, String Height) 
 	throws InterruptedException {
 		CFDP.editAgeInvalid(Age);
 		CFDP.editWeightInvalid(Weight);
@@ -301,29 +296,29 @@ private WebDriverWait wait;
 		CFDP.ClickSavechanges();
 	}
 
-	@Then("User should see Error message")
-	public void user_should_see_error_message() {
-	    
+	@Then("User should see Error message in common feature Dashboard page")
+	public void user_should_see_error_message_in_common_feature_dashboard_page() {
+	   
 	}
 
-	@When("User edit age valid as {string}, weight as {string}, height as {string} and click Save Changes")
-	public void user_edit_age_valid_as_weight_as_height_as_and_click_save_changes(String string, String string2, String string3) {
-	    
+	@When("User edit age valid as {string}, weight as {string}, height as {string} and click Save Changes in common feature Dashboard page")
+	public void user_edit_age_valid_as_weight_as_height_as_and_click_save_changes_in_common_feature_dashboard_page(String string, String string2, String string3) {
+	
 	}
 
-	@Then("User should see messages {string}")
-	public void user_should_see_messages(String string) {
-	    
+	@Then("User should see messages {string} in common feature Dashboard page")
+	public void user_should_see_messages_in_common_feature_dashboard_page(String string) {
+	   
 	}
 
-	@When("User scrolls  to the Stress Management section")
-	public void user_scrolls_to_the_stress_management_section() {
+	@When("User scrolls  to the Stress Management section in common feature Dashboard page")
+	public void user_scrolls_to_the_stress_management_section_in_common_feature_dashboard_page() {
 		CFDP.scrollToStressManagementSection();
 	    LoggerLoad.debug("Scrolled to Stress Management section.");  
 	}
 
-	@Then("User should see the Title  {string}")
-	public void user_should_see_the_title(String expectedTitle) {
+	@Then("User should see the Title  {string} in Homepage Common user")
+	public void user_should_see_the_title_in_homepage_common_user(String expectedTitle) {
 		String actualTitle = CFDP.getStressManagementHeaderText();
 	    LoggerLoad.debug("Actual header text found: " + actualTitle);
 
@@ -336,15 +331,15 @@ private WebDriverWait wait;
 	    Assert.assertTrue("Header should be visible.", CFDP.isStressManagementHeaderVisible());
 	}
 
-	@Then("user should see tabs {string}")
-	public void user_should_see_tabs(String string) {
+	@Then("user should see tabs {string} in common feature Dashboard page")
+	public void user_should_see_tabs_in_common_feature_dashboard_page(String string) {
 		Assert.assertTrue("Expected all tabs to be visible.",
 			CFDP.areStressmanagementsTabsVisible());
 		    LoggerLoad.debug("Verified all stress management tabs are visible.");  
 	}
 
-	@When("User clicks on each tab")
-	public void user_clicks_on_each_tab() {
+	@When("User clicks on each tab in common feature Dashboard page")
+	public void user_clicks_on_each_tab_in_common_feature_dashboard_page() {
 		CFDP.scrollToStressManagementSection();
 		
 	    CFDP.clickMeditationTab();
@@ -360,28 +355,27 @@ private WebDriverWait wait;
         assertTrue(CFDP.isMindfulnessContentDisplayed());  
 	}
 
-	@Then("User should see corresponding display section")
-	public void user_should_see_corresponding_display_section() {
+	@Then("User should see corresponding display section in common feature Dashboard page")
+	public void user_should_see_corresponding_display_section_in_common_feature_dashboard_page() {
 		LoggerLoad.debug("All Tabs Section is Displayed");
 	}
 
-	@When("User clicks Meditation tab")
-	public void user_clicks_meditation_tab() 
+	@When("User clicks Meditation tab in common feature Dashboard page")
+	public void user_clicks_meditation_tab_in_common_feature_dashboard_page() 
 	throws InterruptedException {
 		CFDP.scrollToStressManagementSection();
 		CFDP.clickMeditationTab();
 		Thread.sleep(2000);
 	}
 
-	@Then("User should see the content with title {string}")
-	public void user_should_see_the_content_with_title(String expectedText) {
+	@Then("User should see the content with title {string} in common feature Dashboard page")
+	public void user_should_see_the_content_with_title_in_common_feature_dashboard_page(String expectedText) {
 		String actualText = CFDP.isGuidedMeditationTitle();
 	    System.out.println("Actual welcome sub text: " + actualText);
 	    assertEquals(expectedText, actualText);  
 	}
-
-	@Then("User should see buttons for {string}")
-	public void user_should_see_buttons_for(String expectedText) {
+		@Then("User should see buttons for {string} in common feature Dashboard page")
+		public void user_should_see_buttons_for_in_common_feature_dashboard_page(String expectedText) {
 		LoggerLoad.debug("Validating Excersice Time Tab " + expectedText);
 
 		switch (expectedText) {
@@ -408,21 +402,21 @@ private WebDriverWait wait;
 		} 
 	}
 
-	@Then("User should see a progress bar with time indicators {string} by default")
-	public void user_should_see_a_progress_bar_with_time_indicators_by_default(String timeIndicator) {
+		@Then("User should see a progress bar with time indicators {string} by default in common feature Dashboard page")
+		public void user_should_see_a_progress_bar_with_time_indicators_by_default_in_common_feature_dashboard_page(String timeIndicator) {
 		Assert.assertTrue("Progress bar is not displayed", CFDP.isProgressBarDisplayed());
         Assert.assertTrue("Time indicator not displayed for: " + timeIndicator,
         		CFDP.isTimeIndicatorDisplayed(timeIndicator)); 
 	}
 
-	@When("User clicks audio play button")
-	public void user_clicks_audio_play_button() {
+		@When("User clicks audio play button in common feature Dashboard page")
+		public void user_clicks_audio_play_button_in_common_feature_dashboard_page() {
 		CFDP.scrollToProgressbar();
 		CFDP.clickPlaybutton();
 	}
 
-	@Then("User Should see meditation audio should start playing and the progress bar should update accordingly")
-	public void user_should_see_meditation_audio_should_start_playing_and_the_progress_bar_should_update_accordingly() 
+	@Then("User Should see meditation audio should start playing and the progress bar should update accordingly in common feature Dashboard page")
+	public void user_should_see_meditation_audio_should_start_playing_and_the_progress_bar_should_update_accordingly_in_common_feature_dashboard_page() 
     throws InterruptedException {
 		String initialStyle = CFDP.getProgressBarStyle();
 	    // wait a few seconds to allow progress
@@ -431,14 +425,14 @@ private WebDriverWait wait;
 //	    Assert.assertNotEquals("Progress bar did not update after playing audio", initialStyle, updatedStyle); 
 	}
 
-	@When("User clicks Movement Tab")
-	public void user_clicks_movement_tab() {
+	@When("User clicks Movement Tab in common feature Dashboard page")
+	public void user_clicks_movement_tab_in_common_feature_dashboard_page() {
 		CFDP.scrollToStreesMangementTab();
 		CFDP.clickMovementTab();
 	}
 
-	@Then("User should see title {string}")
-	public void user_should_see_title(String expectedTitle) {
+	@Then("User should see title {string} in common feature Dashboard page")
+	public void user_should_see_title_in_common_feature_dashboard_page(String expectedTitle) {
 		String actualTitle = CFDP.GentleMoventText();
 	    LoggerLoad.debug("Actual header text found: " + actualTitle);
 	    
@@ -447,15 +441,15 @@ private WebDriverWait wait;
 	    Assert.assertEquals("Gentle Movement", CFDP.GentleMoventText()); 
 	}
 
-	@When("User clicks Movement Tab and see Sescrption")
-	public void user_clicks_movement_tab_and_see_sescrption() {
+	@When("User clicks Movement Tab and see Sescrption in common feature Dashboard page")
+	public void user_clicks_movement_tab_and_see_sescrption_in_common_feature_dashboard_page() {
 		CFDP.scrollToStreesMangementTab();
 		CFDP.clickMovementTab(); 
 	}
 
 
-	@Then("User should see the description {string}")
-	public void user_should_see_the_description(String expectedDescription) {
+	@Then("User should see the description {string} in common feature Dashboard page")
+	public void user_should_see_the_description_in_common_feature_dashboard_page(String expectedDescription) {
 		switch (expectedDescription) {
         case "Simple stretches to release tension:":
             Assert.assertTrue(CFDP.Simplestrechtext.isDisplayed());
@@ -478,13 +472,13 @@ private WebDriverWait wait;
     } 
 	}
 
-	@When("User clicks Mindfulness tab")
-	public void user_clicks_mindfulness_tab() {
+	@When("User clicks Mindfulness tab in common feature Dashboard page")
+	public void user_clicks_mindfulness_tab_in_common_feature_dashboard_page() {
 		CFDP.scrollToStreesMangementTab();
 		CFDP.clickMindfulnessTab();
 	}
-	@Then("User should see title in mindfulness tab {string}")
-	public void user_should_see_title_in_mindfulness_tab(String expectedTitle) {
+	@Then("User should see title in mindfulness tab {string} in common feature Dashboard page")
+	public void user_should_see_title_in_mindfulness_tab_in_common_feature_dashboard_page(String expectedTitle) {
 		String actualTitle = CFDP.PresentmomentAwaremessText();
 	    LoggerLoad.debug("Actual header text found: " + actualTitle);
 	    
@@ -493,8 +487,8 @@ private WebDriverWait wait;
 	    Assert.assertEquals("Present Moment Awareness", CFDP.PresentmomentAwaremessText());  
 	}
 	
-	@Then("User should see the description in mindfullness Tab {string}")
-	public void user_should_see_the_description_in_mindfullness_tab(String expectedDescription) {
+	@Then("User should see the description in mindfullness Tab {string} in common feature Dashboard page")
+	public void user_should_see_the_description_in_mindfullness_tab_in_common_feature_dashboard_page(String expectedDescription) {
 		switch (expectedDescription) {
         case "Focus on your senses:":
             Assert.assertTrue(CFDP.Focusontext.isDisplayed());
@@ -521,13 +515,13 @@ private WebDriverWait wait;
 	}
 
 
-	@When("User scroll to the end")
-	public void user_scroll_to_the_end() {
+	@When("User scroll to the end in common feature Dashboard page")
+	public void user_scroll_to_the_end_in_common_feature_dashboard_page_() {
 		CFDP.scrollToBenifitofDoabeticManagement();
 	}
 
-	@Then("User should see the list of benefits with explanation {string} and {string}")
-	public void user_should_see_the_list_of_benefits_with_explanation_and(String benefit, String explanation) {
+	@Then("User should see the list of benefits with explanation {string} and {string} in common feature Dashboard page")
+	public void user_should_see_the_list_of_benefits_with_explanation_and_in_common_feature_dashboard_page(String benefit, String explanation) {
 		
 	    switch (benefit) {
 	        case "Reduces Stress Hormones":
@@ -558,14 +552,14 @@ private WebDriverWait wait;
 	    System.out.println("Verified: " + benefit + " - " + explanation);
 	}
 
-	@When("User clicks breathing tab under stress management techniques")
-	public void user_clicks_breathing_tab_under_stress_management_techniques() {
+	@When("User clicks breathing tab under stress management techniques in common feature Dashboard page")
+	public void user_clicks_breathing_tab_under_stress_management_techniques_in_common_feature_dashboard_page() {
 		CFDP.scrollToStreesMangementTab();
 		CFDP.clickBreathingTab();
 	}
 
-	@Then("User should see the heading {string}  with the description {string}")
-	public void user_should_see_the_heading_with_the_description(String heading, String description) {
+	@Then("User should see the heading {string}  with the description {string} in common feature Dashboard page")
+	public void user_should_see_the_heading_with_the_description_in_common_feature_dashboard_page(String heading, String description) {
 		Assert.assertTrue(CFDP.BreathingTech.isDisplayed());
 	    Assert.assertEquals(CFDP.BreathingTech.getText(), heading, "4-7-8 Breathing Technique");
 
@@ -576,14 +570,14 @@ private WebDriverWait wait;
 	}  
 	
 
-	@Then("User should see the {string} button on Breathing Page")
-	public void user_should_see_the_button_on_breathing_page(String string) {
+	@Then("User should see the {string} button on Breathing Page in common feature Dashboard page")
+	public void user_should_see_the_button_on_breathing_page_in_common_feature_dashboard_page(String string) {
 		Assert.assertTrue(CFDP.StartbreathingBtn.isDisplayed());
 	}
 
 
-	@Then("User should see the {string} counter text and value starting at {string}")
-	public void user_should_see_the_counter_text_and_value_starting_at(String heading, String description) {
+	@Then("User should see the {string} counter text and value starting at {string}  in common feature Dashboard page")
+	public void user_should_see_the_counter_text_and_value_starting_at_in_common_feature_dashboard_page(String heading, String description) {
 		Assert.assertTrue(CFDP.Cyclecomplete.isDisplayed());
 	    Assert.assertEquals(CFDP.Cyclecomplete.getText(), heading, "Cycles completed");
 
@@ -591,8 +585,8 @@ private WebDriverWait wait;
 	    Assert.assertEquals(CFDP.CyclecompleteValue.getText(), description, "0");  
 	}
 	 
-	@Then("User should see the label {string} with a hyphen {string} as its current value.")
-	public void user_should_see_the_label_with_a_hyphen_as_its_current_value(String heading, String description) {
+	@Then("User should see the label {string} with a hyphen {string} as its current value in common feature Dashboard page")
+	public void user_should_see_the_label_with_a_hyphen_as_its_current_value_in_common_feature_dashboard_page(String heading, String description) {
 		Assert.assertTrue(CFDP.Currentphase.isDisplayed());
 	    Assert.assertEquals(CFDP.Currentphase.getText(), heading, "Current phase");
 
@@ -601,8 +595,8 @@ private WebDriverWait wait;
 	}
 
 
-	@Then("User should see the steps {string} below")
-	public void user_should_see_the_steps_below(String Text) {
+	@Then("User should see the steps {string} below in common feature Dashboard page")
+	public void user_should_see_the_steps_below_in_common_feature_dashboard_page(String text) {
 		Assert.assertTrue(CFDP.Inhale.isDisplayed());	    
 	    Assert.assertTrue(CFDP.Hold.isDisplayed());	   
 	    Assert.assertTrue(CFDP.Exhale.isDisplayed());
@@ -610,15 +604,15 @@ private WebDriverWait wait;
 	}
 
 
-	@When("User clicks the {string} button during the breathing exercise")
-	public void user_clicks_the_button_during_the_breathing_exercise(String string) {
+	@When("User clicks the {string} button during the breathing exercise in common feature Dashboard page")
+	public void user_clicks_the_button_during_the_breathing_exercise_in_common_feature_dashboard_page(String string) {
 		CFDP.scrollToStreesMangementTab();
 		CFDP.clickBreathingTab();
 		CFDP.ClickStartBreathbutton();
 	}
 
-	@Then("User should see the breathing cycles begin")
-	public void user_should_see_the_breathing_cycles_begin() 
+	@Then("User should see the breathing cycles begin in common feature Dashboard page")
+	public void user_should_see_the_breathing_cycles_begin_in_common_feature_dashboard_page()
 	throws InterruptedException {
 		// Wait for the cycle to start (simulate watching for change)
 	    String initialStyle = CFDP.BreathingCycleIndicator.getDomAttribute("style");
@@ -636,13 +630,12 @@ private WebDriverWait wait;
 	    
 	}
 
-	@When("User view the current phase begins")
-	public void user_view_the_current_phase_begins() {
+	@When("User view the current phase begins in common feature Dashboard page")
+	public void user_view_the_current_phase_begins_in_common_feature_dashboard_page() {
 	    
 	}
-	@Then("User should see the breathing cycle displays  {int} seconds {string} for Inhale")
-	public void user_should_see_the_breathing_cycle_displays_seconds_for_inhale(Integer int1, String string) {
-	    
+	@Then("User should see the breathing cycle displays  {int} seconds {string} for Inhale in common feature Dashboard page")
+	public void user_should_see_the_breathing_cycle_displays_seconds_for_inhale_in_common_feature_dashboard_page(Integer int1, String string) {
 	}
 
 	@Then("User should see the breathing cycle displays {string} which last for {int} seconds for hold")
@@ -661,9 +654,8 @@ private WebDriverWait wait;
 	    
 	}
 
-	@When("User view the next phase begins")
-	public void user_view_the_next_phase_begins() {
-	    
+	@When("User view the next phase begins in common feature Dashboard page")
+	public void user_view_the_next_phase_begins_in_common_feature_dashboard_page() {
 	}
 
 	@Given("User see the hold phase has completed")
@@ -676,28 +668,29 @@ private WebDriverWait wait;
 	    
 	}
 
-	@When("User completes full breathing cycle")
-	public void user_completes_full_breathing_cycle() {
-	    
+	@When("User completes full breathing cycle in common feature Dashboard page")
+	public void user_completes_full_breathing_cycle_in_common_feature_dashboard_page() {
+	   
 	}
+
 
 	@Then("User should see {string} counter should increased by {int}")
 	public void user_should_see_counter_should_increased_by(String string, Integer int1) {
 	    
 	}
 
-	@When("User see next phase begins")
-	public void user_see_next_phase_begins() {
-	    
+	@When("User see next phase begins in common feature Dashboard page")
+	public void user_see_next_phase_begins_in_common_feature_dashboard_page() {
+	   
 	}
 
-	@Then("User should see breathing cycle displays {string} which last for {int} seconds")
-	public void user_should_see_breathing_cycle_displays_which_last_for_seconds(String string, Integer int1) {
-	    
+	@Then("User should see breathing cycle displays {string} which last for {int} seconds in common feature Dashboard page")
+	public void user_should_see_breathing_cycle_displays_which_last_for_seconds_in_common_feature_dashboard_page(String string, Integer int1) {
 	}
 
-	@Then("User should see breathing exercise stops")
-	public void user_should_see_breathing_exercise_stops() {
+	@Then("User should see breathing exercise stops in common feature Dashboard page")
+	public void user_should_see_breathing_exercise_stops_in_common_feature_dashboard_page() {
+	   
 	    
 	}
 
