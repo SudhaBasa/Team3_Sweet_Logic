@@ -98,43 +98,43 @@ Feature: Validation for home page - Registered user
   Scenario: Verify condition text for HbA1C value less than 5.7
     Given User is in password auth page for FreeUser
     When User clicks sign in after entering password
-    Then User should see Normal as the condition text.
+    Then User should see "Normal" as the condition text.
 
   @HbA1CValuePreDiabetic
   Scenario: Verify condition text for HbA1C between 5.7 and 6.4
     Given User is in password auth page for FreeUser
     When User clicks sign in after entering password
-    Then User should see Pre-Diabetic as the condition text.
+    Then User should see "Pre-Diabetic" as the condition text.
 
   @HbA1CValueDiabetic
   Scenario: Verify condition text for HbA1C greater than or equal 6.5
     Given User is in password auth page for FreeUser
     When User clicks sign in after entering password
-    Then User should see Diabetic as the condition text.
+    Then User should see "Diabetic" as the condition text.
 
   @BMI
   Scenario: Verify BMI text for value less than 18.5
     Given User is in password auth page for FreeUser
     When User clicks sign in after entering password
-    Then User should see Underweight as the BMI category.
+    Then User should see "Underweight" as the BMI category.
 
   @BMINormal
   Scenario: Verify BMI text for value between 18.5 and 24.9
     Given User is in password auth page for FreeUser
     When User clicks sign in after entering password
-    Then User should see Normal as the BMI category.
+    Then User should see "Normal" as the BMI category.
 
   @BMIOverweight
   Scenario: Verify BMI text for value between 25.0 and 29.9
     Given User is in password auth page for FreeUser
     When User clicks sign in after entering password
-    Then User should see Overweight as the BMI category.
+    Then User should see "Overweight" as the BMI category.
 
   @BMIObese
   Scenario: Verify BMI text for value 30.0 or above
     Given User is in password auth page for FreeUser
     When User clicks sign in after entering password
-    Then User should see Obese as the BMI category.
+    Then User should see "Obese" as the BMI category.
 
   @BloodSugar
   Scenario: Verify units for average blood sugar
