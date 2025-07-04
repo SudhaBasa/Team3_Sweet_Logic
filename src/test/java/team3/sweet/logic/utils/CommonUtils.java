@@ -27,18 +27,18 @@ public class CommonUtils {
 	}
 
 	public static String generateRandomEmail() {
-		String randomString = UUID.randomUUID().toString().replace("-", "").substring(0, 7);
-		return "Sweet_" + randomString + "@gmail.com";
+		String randomString = UUID.randomUUID().toString().replace("-", "").substring(0, 4);
+		return "Sweetlo_" + randomString + "@gmail.com";
 	}
 
 	public static String generateFullName() {
-		String randomSuffix = UUID.randomUUID().toString().replaceAll("[^a-zA-Z]", "").substring(0, 6);
-		return "Sweet" + randomSuffix;
+		String randomSuffix = UUID.randomUUID().toString().replaceAll("[^a-zA-Z]", "").substring(0,5);
+		return "Sweetc" + randomSuffix;
 	}
 
 	public static String generateUserName() {
 		String randomSuffix = UUID.randomUUID().toString().replaceAll("[^a-zA-Z]", "").substring(0, 5);
-		return "Sweetl" + randomSuffix;
+		return "Swee" + randomSuffix;
 	}
 
 	public static boolean waitForElementStaleness(WebDriver driver, WebElement element, long durationInSeconds) {
@@ -56,7 +56,7 @@ public class CommonUtils {
 	
 	public static void waitForElement(WebDriver driver) {
 		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 	}
 
 	public static void waitForVisibilityOfAllElements(WebDriver driver,List<WebElement> elements) {

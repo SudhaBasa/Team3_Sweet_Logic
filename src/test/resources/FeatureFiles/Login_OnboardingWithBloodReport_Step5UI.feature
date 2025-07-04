@@ -1,7 +1,7 @@
 Feature: Onboarding Step 5 UI
 
   Background: 
-    User should have completed until step 5
+    Given User should have completed until step 5
 
 
   Scenario: Verify back button function

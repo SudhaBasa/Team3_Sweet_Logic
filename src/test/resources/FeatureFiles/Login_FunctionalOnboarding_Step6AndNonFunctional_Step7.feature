@@ -16,7 +16,7 @@ Feature: Functional test for onboarding step 6 and non functional scenarios for 
   Scenario: Verify heading for step 7 is visible
     Given User is in step six
     When User selects from the options in step six
-    Then User should see title "What's your go-to food passport?"
+    Then User should see title on Step seven "What's your go-to food passport?"
 
   Scenario: Verify subtext for step 7 is visible
     Given User is in step six

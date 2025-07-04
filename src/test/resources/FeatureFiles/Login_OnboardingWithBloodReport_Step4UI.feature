@@ -1,7 +1,7 @@
 Feature: Onboarding Step 4 UI
 
   Background: 
-    User should have completed until step 3
+    Given User should have completed until step 3
 
 
   Scenario: Verify option is selectable

@@ -12,9 +12,7 @@ Feature: Validation for onboarding step 8
     Given User is in step seven
     When User selects from one of the cuisine options in step seven
     Then User should see title on Step eight "Allergic to any foods?"   
-    #when trying to find xpath for heading..it has xpath of heading on step 10
     
-
   Scenario: Verify subtext for step 8 is visible
     Given User is in step seven
     When User selects from one of the cuisine options in step seven

@@ -24,15 +24,14 @@ public class Hooks {
 		DriverFactory.initialization();
 		driver = DriverFactory.getdriver();
 		LoggerLoad.info("Starting browser");
-		
+
 	}
-	
 
 	@After
 	public void AddScreenshot(Scenario scenario) throws IOException {
 
 		if (scenario.isFailed()) {
-			
+
 			final byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 			scenario.attach(screenshot, "image/png", "My Screenshot");
 			Allure.addAttachment("Failed Scenario Screenshot", new ByteArrayInputStream(screenshot));
@@ -43,8 +42,8 @@ public class Hooks {
 	@After
 	public static void afterAll() {
 
-//		DriverFactory.closeBrowser();
-//		LoggerLoad.info("closing browser");
-////
+		DriverFactory.closeBrowser();
+		LoggerLoad.info("closing browser");
+
 	}
 }

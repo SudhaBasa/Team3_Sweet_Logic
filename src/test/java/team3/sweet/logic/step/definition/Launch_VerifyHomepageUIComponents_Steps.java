@@ -61,12 +61,14 @@ public void user_should_see_a_input_button(String string) {
     System.out.println("Start Today is Visible");
 }
 
+
 @Then("User should see the text {string}")
 public void user_should_see_the_text1(String string) {
     String comprehensive=lp.ComprehensiveTools();
    Assert.assertEquals("Comprehensive Tools text mismatch!", "Comprehensive Diabetes Management Tools", comprehensive.trim());
    System.out.println("Comprehensive Tools text is  "+comprehensive);
 }
+
 
 @Then("User should see a card with title {string}")
 public void user_should_see_a_card_with_title(String string) {
@@ -76,6 +78,7 @@ public void user_should_see_a_card_with_title(String string) {
     
 }
 
+
 @Then("User should see the text  {string}")
 public void user_should_see_the_text(String string) {
     String actualTitle=lp.NutritionExcercise();
@@ -83,6 +86,7 @@ public void user_should_see_the_text(String string) {
     System.out.println("Actual Title is    "+actualTitle);
     
 }
+
 
 @Then("User should see heart icon")
 public void user_should_see_heart_icon() {
