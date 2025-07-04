@@ -3,6 +3,9 @@ package team3.sweet.logic.step.definition;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+import org.apache.poi.util.StringUtil;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -22,25 +25,115 @@ public class Login_StepThruOnboarding_Steps {
 	Login_OnboardingWithBloodReport_Page lobp = new Login_OnboardingWithBloodReport_Page(driver);
 	Login_StepThruOnboarding_Page sto = new Login_StepThruOnboarding_Page(driver);
 
+	@Given("User should have completed until step eleven in onboarding process")
+	public void user_should_have_completed_until_step_eleven_in_onboarding_process() {
+
+		lobp.completeOnboarding();
+		sto.onboardingTillStep11();
+
+	}
+
+	@Given("User is on Step {int} of the onboarding process after entering a valid HbA1c value")
+	public void user_is_on_step_of_the_onboarding_process_after_entering_a_valid_hb_a1c_value(Integer int1) {
+		System.out.println("The user is on Step 12 of 12");
+
+	}
+
+	@Given("User is on loading personalised screen")
+	public void user_is_on_loading_personalised_screen() {
+
+		System.out.println("The user is on Personalised Screen");
+
+	}
+
+	@When("User views the screen")
+	public void user_views_the_screen() {
+
+		sto.enteringHBA1cValue(4.5);
+		sto.clickContinueBtnOnStep12();
+		CommonUtils.waitForElement(driver);
+		System.out.println("The user is on Free vs. Premium Account Features Screen");
+
+	}
+
+	@Then("User should be navigated to the {string} screen after loading personalised screen")
+	public void user_should_be_navigated_to_the_screen_after_loading_personalised_screen(String string) {
+
+		assertTrue(sto.isUpgradeToPremiumBtnDisplayed());
+	}
+
+	@Then("User should see the message as {string}")
+	public void user_should_see_the_message_as(String indicatorText) {
+
+		assertEquals(sto.getLoadingIndicatorMsg(), indicatorText);
+	}
+
+	@Then("User should see the subtext {string}")
+	public void user_should_see_the_subtext(String indicatorSubText) {
+
+		assertEquals(sto.getLoadingIndicatorSubText(), indicatorSubText);
+
+	}
+
+	@Then("User should see a loading indicator")
+	public void user_should_see_a_loading_indicator() {
+
+		assertTrue(sto.isLoadingIndicatorDisplayed());
+
+	}
+
+	@When("User clicks {string} on step twelve")
+	public void user_clicks_on_step_twelve(String string) {
+		sto.enteringHBA1cValue(4.5);
+		sto.clickContinueBtnOnStep12();
+		CommonUtils.waitForElement(driver);
+
+	}
+
+	@Then("User should see success message")
+	public void user_should_see_success_message() {
+
+		assertEquals(sto.getSucessMsgOnStep12(), ConfigReader.getProperty("sucessMsgOnStep12"));
+
+	}
+
+	@Given("User is in step twelve")
+	public void user_is_in_step_twelve() {
+		System.out.println("The user is on Step 11 of 12");
+
+	}
+
+	@When("User enters valid range of value in input field")
+	public void user_enters_valid_range_of_value_in_input_field() {
+		sto.enteringHBA1cValue(4.5);
+	}
+
+	@Then("User should see input field accept the value")
+	public void user_should_see_input_field_accept_the_value() {
+		// sto.getValidHba1cValue();
+
+	}
+
+	@When("User tries to enter an invalid HbA1c value in the input field.")
+	public void user_tries_to_enter_an_invalid_hb_a1c_value_in_the_input_field() {
+
+		sto.enteringHBA1cValue(2.0);
+	}
+
+	@Then("User should see the input field does not accept value.")
+	public void user_should_see_the_input_field_does_not_accept_value() {
+
+		String value = sto.getHBA1cValue().getDomAttribute("value");
+		System.out.println("H1A1C Value: " + value);
+
+		assertTrue(StringUtil.isBlank(value));
+	}
+
 	@Given("User should have completed until step ten in onboarding process.")
 	public void userr_should_have_completed_until_step_ten_in_onboarding_process() {
 
 		lobp.completeOnboarding();
-		sto.clickOnStepThruOnboardingBtn();
-		sto.clickOnOption2OnStep1();
-		sto.clickFemaleBtn(); // on step 2
-		sto.selectRandomAgeBetween30and49();// step 3
-		sto.clickOnFeetAndInchesBtn();
-		sto.getOptionInFeet(6, 2).click(); // step4
-		sto.clickOnPoundsBtn();
-		sto.selectRandomWeightInPounds();// step5
-		sto.clickOnalInclusiveBtnOnStep6();// step6
-		sto.clickOnMediterraneanOnStep7(); // step7
-		sto.clickOnYesOnStep8();// step 8
-		sto.clickOnDairyCheckBox();// step9
-		sto.clickOnContinueButton();// step9
-		sto.selectCheckbox(3);
-		sto.clickOnContinueButton();// step 10
+		sto.onboardingTillStep10();
 
 	}
 
@@ -49,12 +142,31 @@ public class Login_StepThruOnboarding_Steps {
 
 		System.out.println("The user is on 11 of 12 step");
 	}
-	
+
+	@Then("User should see description on Step twelve {string}")
+	public void user_should_see_description_on_step_twelve(String descriptionText) {
+
+		assertEquals(sto.getDescriptionTextOnStep12(), descriptionText);
+	}
+
+	@Then("User should see {string} button on step eleven")
+	public void user_should_see_button_on_step_eleven(String string) {
+
+		assertTrue(sto.isContinueBtnDisplayed());
+	}
+
+	@Then("User should see the text on step twelve {string}")
+	public void user_should_see_the_text_on_step_twelve(String text) {
+
+		assertEquals(sto.getTextOnStep12(), text);
+
+	}
+
 	@Then("User should see input field with Text {string}")
 	public void user_should_see_input_field_with_text(String placeholderText) {
 
-	//assertEquals(sto.getPlaceholderTextOn12(), placeholderText);
-	
+		assertEquals(sto.getPlaceholderTextOn12(), placeholderText);
+
 	}
 
 	@When("User clicks option from the preferred intensity level")
@@ -74,19 +186,8 @@ public class Login_StepThruOnboarding_Steps {
 	public void user_should_have_completed_until_step_ten_in_onboarding_process() {
 
 		lobp.completeOnboarding();
-		sto.clickOnStepThruOnboardingBtn();
-		sto.clickOnOption2OnStep1();
-		sto.clickFemaleBtn(); // on step 2
-		sto.selectRandomAgeBetween30and49();// step 3
-		sto.clickOnFeetAndInchesBtn();
-		sto.getOptionInFeet(6, 2).click(); // step4
-		sto.clickOnPoundsBtn();
-		sto.selectRandomWeightInPounds();// step5
-		sto.clickOnalInclusiveBtnOnStep6();// step6
-		sto.clickOnMediterraneanOnStep7(); // step7
-		sto.clickOnYesOnStep8();// step 8
-		sto.clickOnDairyCheckBox();// step9
-		sto.clickOnContinueButton();// step9
+		sto.onboardingTillStepTen();
+//	
 	}
 
 	@Given("User is in step ten")
@@ -103,8 +204,6 @@ public class Login_StepThruOnboarding_Steps {
 		for (String option : options) {
 
 			WebElement ele = sto.getPreferredExcercise(option.trim());
-
-			// System.out.println("Is displayed: " + ele.isDisplayed());
 
 			displayed = displayed && ele.isDisplayed();
 		}
@@ -129,17 +228,7 @@ public class Login_StepThruOnboarding_Steps {
 	public void user_should_have_completed_until_step_nine_in_onboarding_process() {
 
 		lobp.completeOnboarding();
-		sto.clickOnStepThruOnboardingBtn();
-		sto.clickOnOption2OnStep1();
-		sto.clickFemaleBtn(); // on step 2
-		sto.selectRandomAgeBetween30and49();// step 3
-		sto.clickOnFeetAndInchesBtn();
-		sto.getOptionInFeet(6, 2).click(); // step4
-		sto.clickOnPoundsBtn();
-		sto.selectRandomWeightInPounds();// step5
-		sto.clickOnalInclusiveBtnOnStep6();// step6
-		sto.clickOnMediterraneanOnStep7(); // step7
-		sto.clickOnYesOnStep8();// step 8
+		sto.onboardingTillStep9();
 
 	}
 
@@ -187,8 +276,6 @@ public class Login_StepThruOnboarding_Steps {
 
 			WebElement ele = sto.getMedicalConditionOptions(option.trim());
 
-			// System.out.println("Is displayed: " + ele.isDisplayed());
-
 			displayed = displayed && ele.isDisplayed();
 		}
 
@@ -200,16 +287,7 @@ public class Login_StepThruOnboarding_Steps {
 	public void user_should_have_completed_until_step_seven_in_onboarding_process() {
 
 		lobp.completeOnboarding();
-		sto.clickOnStepThruOnboardingBtn();
-		sto.clickOnOption2OnStep1();
-		sto.clickFemaleBtn(); // on step 2
-		sto.selectRandomAgeBetween30and49();// step 3
-		sto.clickOnFeetAndInchesBtn();
-		sto.getOptionInFeet(6, 2).click(); // step4
-		sto.clickOnPoundsBtn();
-		sto.selectRandomWeightInPounds();// step5
-		sto.clickOnalInclusiveBtnOnStep6();// step6
-		sto.clickOnMediterraneanOnStep7(); // step7
+		sto.onboardingTillStep7();
 
 	}
 
@@ -257,8 +335,6 @@ public class Login_StepThruOnboarding_Steps {
 
 			WebElement ele = sto.geAllergyOption(option.trim());
 
-			// System.out.println("Is displayed: " + ele.isDisplayed());
-
 			displayed = displayed && ele.isDisplayed();
 		}
 
@@ -268,15 +344,7 @@ public class Login_StepThruOnboarding_Steps {
 	@Given("User should have completed until step six in onboarding process")
 	public void user_should_have_completed_until_step_six_in_onboarding_process() {
 		lobp.completeOnboarding();
-		sto.clickOnStepThruOnboardingBtn();
-		sto.clickOnOption2OnStep1();
-		sto.clickFemaleBtn(); // on step 2
-		sto.selectRandomAgeBetween30and49();// step 3
-		sto.clickOnFeetAndInchesBtn();
-		sto.getOptionInFeet(6, 2).click(); // step4
-		sto.clickOnPoundsBtn();
-		sto.selectRandomWeightInPounds();// step5
-		sto.clickOnalInclusiveBtnOnStep6();// step6
+		sto.onboardingTillStep6();
 
 	}
 
@@ -285,12 +353,6 @@ public class Login_StepThruOnboarding_Steps {
 
 		System.out.println("The user is on step 7 of 12");
 	}
-
-//	@Then("Progresss bar should visually indicate {string}")
-//	public void progresss_bar_should_visually_indicate(String string) {
-//
-//		assertEquals(sto.getProgressBarText(), Step8ProgressBar);
-//	}
 
 	@Then("User should see title on Step eight {string}")
 	public void user_should_see_title_on_step_eight(String headingText) {
@@ -312,12 +374,6 @@ public class Login_StepThruOnboarding_Steps {
 		String options[] = string.split(",");
 		for (String option : options) {
 
-			/*
-			 * System.out.println("Option: "+option); option = option.trim(); int index =
-			 * option.lastIndexOf(" "); option = option.substring(0, index).trim();
-			 * System.out.println("option after removing icon:"+ option+":");
-			 */
-
 			WebElement ele = sto.getYesNoOption(option.trim());
 
 			System.out.println("Is displayed: " + ele.isDisplayed());
@@ -332,14 +388,8 @@ public class Login_StepThruOnboarding_Steps {
 	public void user_should_have_completed_until_step_fivee_in_onboarding_process() {
 
 		lobp.completeOnboarding();
-		sto.clickOnStepThruOnboardingBtn();
-		sto.clickOnOption2OnStep1();
-		sto.clickFemaleBtn(); // on step 2
-		sto.selectRandomAgeBetween30and49();// step 3
-		sto.clickOnFeetAndInchesBtn();
-		sto.getOptionInFeet(6, 2).click(); // step4
-		sto.clickOnPoundsBtn();
-		sto.selectRandomWeightInPounds();// step5
+
+		sto.onboardingTillStep5();
 
 	}
 
@@ -354,6 +404,11 @@ public class Login_StepThruOnboarding_Steps {
 
 		assertEquals(sto.getStep7HeadingText(), headingText);
 
+	}
+
+	@Then("User should see title on Step seven {string}")
+	public void user_should_see_title_on_step_seven(String headingText) {
+		assertEquals(sto.getStep7HeadingText(), headingText);
 	}
 
 	@Then("User should see subtext {string}")
@@ -403,12 +458,13 @@ public class Login_StepThruOnboarding_Steps {
 	@Given("User should have completed until step five in onboarding process")
 	public void user_should_have_completed_until_step_five_in_onboarding_process() {
 		lobp.completeOnboarding();
-		sto.clickOnStepThruOnboardingBtn();
-		sto.clickOnOption2OnStep1();
-		sto.clickFemaleBtn(); // on step 2
-		sto.selectRandomAgeBetween30and49();// step 3
-		sto.clickOnFeetAndInchesBtn();
-		sto.getOptionInFeet(6, 2).click(); // step4
+		sto.onboardingTillStep4();
+//		sto.clickOnStepThruOnboardingBtn();
+//		sto.clickOnOption2OnStep1();
+//		sto.clickFemaleBtn(); // on step 2
+//		sto.selectRandomAgeBetween30and49();// step 3
+//		sto.clickOnFeetAndInchesBtn();
+//		sto.getOptionInFeet(6, 2).click(); // step4
 
 	}
 
@@ -481,7 +537,6 @@ public class Login_StepThruOnboarding_Steps {
 	public void user_should_see_notification_textt(String notificationMsg) {
 
 		assertTrue(true);
-		// assertEquals(sto.getMsgOnStepFiveA(), notificationMsg);
 	}
 
 	@When("User selects a weight option between {int}-{int}")
@@ -510,34 +565,45 @@ public class Login_StepThruOnboarding_Steps {
 		// assertEquals(sto.getMsgOnStepFour(), notificationMsg);
 	}
 
-//	@Then("User should see notification text {string}")
-//	public void user_should_see_notification_text(String notificationMsg) {
-//		assertEquals(sto.getToastMsg(), notificationMsg);
-//	}
-
 	@Given("User should have completed until step three in onboarding process")
 	public void user_should_have_completed_until_step_three_in_onboarding_process() {
 		lobp.completeOnboarding();
-		sto.clickOnStepThruOnboardingBtn();
-		sto.clickOnOption2OnStep1();
-		sto.clickFemaleBtn(); // on step 2
-		sto.selectRandomAgeBetween30and49();// step 3
+		sto.onboardingTillStep3();
 	}
 
 	@Then("User should see options labeled on step six {string}")
 	public void user_should_see_options_labeled_on_step_six(String string) {
 
-		// sto.areStep6OptionsPresent();
 		assertTrue(sto.areStep6OptionsPresent());
 	}
 
-	@Then("Pounds options should have 90 to 550 lbs")
-	public void pounds_options_should_have_90_to_550_lbs() {
+	@Then("Pounds options should have {int} to {int} lbs")
+	public void pounds_options_should_have_90_to_550_lbs(int min, int max) {
+		
+
+		boolean optionsExists = true;
+		
+		for(int i=min; i<= max && optionsExists; i++) {
+			
+			optionsExists = optionsExists && sto.getWeightInPoundsEle(i).isDisplayed();			
+		}
+		
+		assertTrue(optionsExists);
+		
 
 	}
 
 	@Then("Kilogram option should have {int} to {int} kg")
-	public void kilogram_option_should_have_to_kg(Integer int1, Integer int2) {
+	public void kilogram_option_should_have_to_kg(Integer min, Integer max) {
+		
+		boolean optionsExists = true;
+		
+		for(int i=min; i<= max && optionsExists; i++) {
+			
+			optionsExists = optionsExists && sto.getWeightInKilogramEle(i).isDisplayed();			
+		}
+		
+		assertTrue(optionsExists);
 
 	}
 
@@ -578,17 +644,6 @@ public class Login_StepThruOnboarding_Steps {
 		assertEquals(sto.getStep5SubText(), subText);
 	}
 
-//	@Then("Progress bar should visually indicate {string}")
-//	public void progress_bar_should_visually_indicate(String string) {
-//	    // Write code here that turns the phrase above into concrete actions
-//	    throw new io.cucumber.java.PendingException();
-//	}
-//	@Then("Progress bar should visually indicate on Step {int} {string}")
-//	public void progress_bar_should_visually_indicate_on_step(Integer int1, String progressText) {
-//
-//		assertEquals(sto.getProgressBarText(), progressText);
-//	}
-
 	@When("User clicks back button in step four")
 	public void user_clicks_back_button_in_step_four() {
 
@@ -605,6 +660,7 @@ public class Login_StepThruOnboarding_Steps {
 
 		sto.clickOnFeetAndInchesBtn();
 		sto.getOptionInFeet(6, 2).click();
+		sto.clickOnPoundsBtn();
 	}
 
 	@When("User selects from options available in centimeters")
@@ -657,7 +713,6 @@ public class Login_StepThruOnboarding_Steps {
 	@Then("Centimeters option should have {int} to {int} cm")
 	public void centimeters_option_should_have_to_cm(Integer int1, Integer int2) {
 
-		// span[normalize-space()='147 cm']/..
 		boolean found = true;
 
 		for (int i = int1; i <= int2 && found; i++) {
@@ -693,6 +748,7 @@ public class Login_StepThruOnboarding_Steps {
 	public void nd_tab_should_have_feet_inches() {
 
 		CommonUtils.waitForElement(driver);
+		
 
 		assertEquals(sto.tapOptionText(1), "Feet & Inches");
 	}
@@ -824,10 +880,20 @@ public class Login_StepThruOnboarding_Steps {
 	@Then("User should see options for age {string}")
 	public void user_should_see_options_for_age(String string) {
 
+		boolean optionsExists = true;
+		
+		for(int i=18; i<= 100 && optionsExists; i++) {
+			
+			optionsExists = optionsExists && sto.getAgeOption(i).isDisplayed();			
+		}
+		
+		assertTrue(optionsExists);
 	}
 
 	@Then("iframe options should have scroll option")
 	public void iframe_options_should_have_scroll_option() {
+		
+		//Implement then part
 
 	}
 

@@ -446,6 +446,7 @@ private WebDriverWait wait;
 	        + "' but found '" + actualTitle + "'", actualTitle.contains(expectedTitle));	   
 	    Assert.assertEquals("Gentle Movement", CFDP.GentleMoventText()); 
 	}
+
 	@When("User clicks Movement Tab and see Sescrption")
 	public void user_clicks_movement_tab_and_see_sescrption() {
 		CFDP.scrollToStreesMangementTab();
