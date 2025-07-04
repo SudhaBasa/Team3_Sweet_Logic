@@ -99,6 +99,39 @@ public class CommonFeatureforHomePage_Page {
 	@FindBy(xpath = "//div[1]/div[2]/div/div[3]/div/div[2]/div[2]")
 	public WebElement AvBSugar_Unit;
 	
+	@FindBy(xpath = "//span[text()='9']")
+	private WebElement HbA1Cvalue;
+	
+	@FindBy(xpath = "//span[text()='21.9']")
+	private WebElement BMIvalue;
+	
+	@FindBy(xpath = "//span[text()='258']")
+	private WebElement AverageBloodSugarvalue;
+	
+	@FindBy(xpath = "//div[text()='Pre-diabetic']")
+	private WebElement Prediabatic;
+	
+	@FindBy(xpath = "//div[text()='Diabetic']")
+	private WebElement Diabetic;
+	
+    @FindBy(xpath = "//div[text()='Normal']")
+	private WebElement Normal;
+    
+    @FindBy(xpath = "//div[text()='Underweight']")
+	private WebElement Underweight;
+    
+	@FindBy(xpath = "//div[text()='Overweight']")
+	private WebElement Overweight;
+	
+	@FindBy(xpath = "//div[text()='Obese']")
+	private WebElement Obese;
+	
+	@FindBy(xpath = "//div[text()='Normal']")
+	private WebElement NormalWeight;
+	
+	@FindBy(xpath = "//div[text()='mg/dL']")
+	private WebElement mgdL;
+	
 	@FindBy(xpath = "//div[2]/div/div/div[2]/div/div[1]/button/h2")
 	public WebElement TodaymealPlan;
 	
@@ -248,6 +281,38 @@ public boolean hasAMorPM() {
 public boolean isHbA1CVisible() {
     return LatestHbA1c.isDisplayed();
 }
+public String getHbA1CValue() {
+   
+    return HbA1Cvalue.getText().trim();
+}
+
+ public String getPrediabeticStatus() {
+       return Prediabatic.getText();
+}
+public String getDiabeticStatus() {    
+    return Diabetic.getText();
+}
+public String getNormalStatus() {   
+    return Normal.getText();
+}
+public String getBMIValue() {    
+    return BMIvalue.getText();
+   }
+
+public String getUnderweight() {    
+	return Underweight.getText();
+}
+
+public String getNormal() {    
+	return NormalWeight.getText();
+}
+public String getOverweight() {
+    	return Overweight.getText();
+}
+
+public String getObese() {   
+	return Obese.getText();
+}
 public boolean isBMILableVisible() {
     return BMI.isDisplayed();
 }
@@ -257,7 +322,6 @@ public boolean AvgBloodSugarvalueVisible() {
 public boolean isAverageBloodSugarUnitVisible() {
     return AvBSugar_Unit.isDisplayed();
 }
-
 public String getAverageBloodSugarUnitText() {
     return AvBSugar_Unit.getText().trim(); // e.g. "mg/dL"
 }
@@ -267,7 +331,6 @@ public boolean isTodaymealplanVisible() {
 public boolean isBreakfastElement(String expectedText) {
 	return Breakfast.getText().trim().equals(expectedText);
 }
-
 public boolean isLunchElement(String expectedText) {
 	return Lunch.getText().trim().equals(expectedText);
 }

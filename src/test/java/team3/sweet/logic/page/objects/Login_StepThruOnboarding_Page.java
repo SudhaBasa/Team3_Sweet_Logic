@@ -1,9 +1,10 @@
 package team3.sweet.logic.page.objects;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.*;
+import java.util.stream.Collectors;
 import java.time.Duration;
 import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -503,7 +504,8 @@ public class Login_StepThruOnboarding_Page {
 		if (step6Options.size() != 3)
 			return false;
 
-		List<String> actualTexts = step6Options.stream().map(WebElement::getText).map(String::trim).toList();
+		List<String> actualTexts = step6Options.stream().map(WebElement::getText).map(String::trim).collect(Collectors.toList());
+				//toList();
 
 		return actualTexts.contains("All-inclusive diet 🍴🍖🍎") && actualTexts.contains("Vegetarian 🥗🍆🥕")
 				&& actualTexts.contains("Vegan 🥬🌱🌿");
@@ -520,7 +522,7 @@ public class Login_StepThruOnboarding_Page {
 	}
 
 	public List<String> getStep6OptionText() {
-		return step6Options.stream().map(WebElement::getText).map(String::trim).toList();
+		return step6Options.stream().map(WebElement::getText).map(String::trim).collect(Collectors.toList());
 	}
 
 	public boolean areStep6OptionsPresent() {
@@ -529,7 +531,7 @@ public class Login_StepThruOnboarding_Page {
 		if (step6Options.size() != 3)
 			return false;
 
-		List<String> actualTexts = step6Options.stream().map(WebElement::getText).map(String::trim).toList();
+		List<String> actualTexts = step6Options.stream().map(WebElement::getText).map(String::trim).collect(Collectors.toList());
 
 		return actualTexts.contains("All-inclusive diet 🍴🍖🍎") && actualTexts.contains("Vegetarian 🥗🍆🥕")
 				&& actualTexts.contains("Vegan 🥬🌱🌿");
@@ -654,7 +656,7 @@ public class Login_StepThruOnboarding_Page {
 
 		if (tabOptionsOnStep5.size() != 2)
 			return false;
-		List<String> actualTexts = tabOptionsOnStep5.stream().map(WebElement::getText).map(String::trim).toList();
+		List<String> actualTexts = tabOptionsOnStep5.stream().map(WebElement::getText).map(String::trim).collect(Collectors.toList());
 		return actualTexts.contains("Kilograms") && actualTexts.contains("Pounds");
 	}
 
@@ -772,7 +774,7 @@ public class Login_StepThruOnboarding_Page {
 
 		if (tabOptionsOnStep4.size() != 2)
 			return false;
-		List<String> actualTexts = tabOptionsOnStep4.stream().map(WebElement::getText).map(String::trim).toList();
+		List<String> actualTexts = tabOptionsOnStep4.stream().map(WebElement::getText).map(String::trim).collect(Collectors.toList());
 		return actualTexts.contains("Centimeters") && actualTexts.contains("Feet & Inches");
 	}
 
@@ -935,7 +937,7 @@ public class Login_StepThruOnboarding_Page {
 		// System.out.println(step1Options);
 		if (step2Options.size() != 3)
 			return false;
-		List<String> actualTexts = step2Options.stream().map(WebElement::getText).map(String::trim).toList();
+		List<String> actualTexts = step2Options.stream().map(WebElement::getText).map(String::trim).collect(Collectors.toList());
 		return actualTexts.contains("Male 👨‍🦱") && actualTexts.contains("Female 👩‍🦰")
 				&& actualTexts.contains("Other ⚧️");
 	}
@@ -969,7 +971,7 @@ public class Login_StepThruOnboarding_Page {
 		// System.out.println(step1Options);
 		if (step1Options.size() != 2)
 			return false;
-		List<String> actualTexts = step1Options.stream().map(WebElement::getText).map(String::trim).toList();
+		List<String> actualTexts = step1Options.stream().map(WebElement::getText).map(String::trim).collect(Collectors.toList());
 		return actualTexts.contains("Type 2") && actualTexts.contains("I don't know");
 	}
 

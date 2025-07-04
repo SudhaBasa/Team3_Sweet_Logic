@@ -154,42 +154,72 @@ public class CommonFeatureforHomePage_Step {
 		LoggerLoad.info("Average Blood Sugar Value is vissible");
 	}
 
-	@Then("User should see Normal as the condition text.")
-	public void user_should_see_normal_as_the_condition_text() {
-	    
+	@Then("User should see {string} as the condition text.")
+	public void user_should_see_as_the_condition_text(String expectedCondition) {
+		String actualCondition = null;
+//	    String expectedCondition = null;
+
+	    String hba1cString = CFHP.getHbA1CValue();
+	    double hba1c = Double.parseDouble(hba1cString);
+	    LoggerLoad.info("HbA1C Value: " + hba1c);
+
+	    try {
+	        if (hba1c < 5.7) {
+	            expectedCondition = "Normal";
+	            actualCondition = CFHP.getNormalStatus();
+	        } else if (hba1c >= 5.7 && hba1c <= 6.4) {
+	            expectedCondition = "Pre-diabetic";
+	            actualCondition = CFHP.getPrediabeticStatus();
+	        } else if (hba1c >= 6.5) {
+	            expectedCondition = "Diabetic";
+	            actualCondition = CFHP.getDiabeticStatus();
+	        }
+
+	        LoggerLoad.info("Expected: " + expectedCondition + " | Actual: " + actualCondition);
+	        assertEquals(actualCondition.trim(), expectedCondition, "Condition text does not match");
+
+	    } catch (Exception e) {
+	        LoggerLoad.error("Error validating condition text: " + e.getMessage());
+	        throw e;
+	    }
 	}
 
-	@Then("User should see Pre-Diabetic as the condition text.")
-	public void user_should_see_pre_diabetic_as_the_condition_text() {
-	    
+	
+	@Then("User should see {string} as the BMI category.")
+	public void user_should_see_as_the_bmi_category(String expectedCategory) {
+	    		
+		String actualCategory = null;
+	    try {
+	        // Step 1: Get BMI value from page
+	        String bmiString = CFHP.getBMIValue(); // e.g., "21.9"
+	        double bmi = Double.parseDouble(bmiString);
+	        LoggerLoad.info("BMI Value Fetched: " + bmi);
+
+	        // Step 2: Determine category based on value
+	        if (bmi < 18.5) {
+	        	expectedCategory = "Underweight";
+	            actualCategory = CFHP.getUnderweight();
+	        } else if (bmi >= 18.5 && bmi <= 24.9) {
+	        	expectedCategory = "Normal";
+	            actualCategory = CFHP.getNormal();
+	        } else if (bmi >= 25.0 && bmi <= 29.9) {
+	        	expectedCategory = "Overweight";
+	            actualCategory = CFHP.getOverweight();
+	        } else if (bmi >= 30.0) {
+	        	expectedCategory = "Obese";
+	            actualCategory = CFHP.getObese();
+	        }
+
+	        // Step 3: Log and assert
+	        LoggerLoad.info("Expected: " + expectedCategory + " | Actual: " + actualCategory);
+	        assertEquals(actualCategory, expectedCategory, "BMI category does not match");
+
+	    } catch (Exception e) {
+	        LoggerLoad.error("Error while validating BMI category: " + e.getMessage());
+	        throw e;
+	    }  
 	}
-
-	@Then("User should see Diabetic as the condition text.")
-	public void user_should_see_diabetic_as_the_condition_text() {
-	    
-	}
-
-	@Then("User should see Underweight as the BMI category.")
-	public void user_should_see_underweight_as_the_bmi_category() {
-	    
-	}
-
-	@Then("User should see Normal as the BMI category.")
-	public void user_should_see_normal_as_the_bmi_category() {
-	    
-	}
-
-	@Then("User should see Overweight as the BMI category.")
-	public void user_should_see_overweight_as_the_bmi_category() {
-	    
-	}
-
-	@Then("User should see Obese as the BMI category.")
-	public void user_should_see_obese_as_the_bmi_category() {
-	    
-	}
-
-
+	
 	@Then("User should see mg\\/dL unit below Average Blood Sugar.")
 	public void user_should_see_mg_d_l_unit_below_average_blood_sugar() {
 		Assert.assertTrue("Expected mg/dL unit below Average Blood Sugar to be visible",
