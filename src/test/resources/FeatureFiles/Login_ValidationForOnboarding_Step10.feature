@@ -17,7 +17,7 @@ Feature: Validation for onboarding step 10
   Scenario: Validate subtext in step 10
     Given User is in step nine
     When User clicks continue button
-    Then User should see subtext "Do you have any other medical conditions?"
+    Then User should see subtext. "Do you have any other medical conditions?"
   												
   Scenario: Verify back button in step 10
     Given User is in step nine

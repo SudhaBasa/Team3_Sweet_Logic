@@ -411,7 +411,7 @@ public class Login_StepThruOnboarding_Steps {
 		assertEquals(sto.getStep7HeadingText(), headingText);
 	}
 
-	@Then("User should see subtext {string}")
+	@Then("User should see subtext. {string}")
 	public void user_should_see_subtext(String subText) {
 
 		assertEquals(sto.getSubText(), subText);

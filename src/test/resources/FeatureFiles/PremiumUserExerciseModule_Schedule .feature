@@ -15,7 +15,7 @@ Then Button changes back to "Mark as Completed"
 Scenario: Verify page title is displayed
 Given User is in the Exercise section 
 When User clicks "view full schedule" 
-Then User should see title "Today's Exercise Schedule"
+Then User should see title. "Today's Exercise Schedule"
 
 #################################################################
 

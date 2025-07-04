@@ -11,7 +11,8 @@ public class TestRunner {
 	@CucumberOptions(tags = "", features = {"src/test/resources/FeatureFiles"}, glue = {
 					"team3.sweet.logic.step.definition",
 					"team3.sweet.logic.hooks" }, monochrome = true, dryRun = false, plugin = {
-							"html:target/cucumber.html", "json:target/cucumber.json" })
+							"pretty","html:target/cucumber.html", "json:target/cucumber.json",
+							"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"})
 
 	public class TestNGTestRunner extends AbstractTestNGCucumberTests {
 

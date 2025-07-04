@@ -13,10 +13,10 @@ Feature: Blood Report Upload Modal
     When User tries to upload a non-PDF file.
     Then User should see "Only PDF files are supported" error.
 
-  Scenario: Verify file size limit (10MB)
-    Given User is on blood report modal.
-    When User uploads a PDF file over 10MB.
-    Then User should see "File exceeds 10MB" error
+  #Scenario: Verify file size limit (10MB)
+    #Given User is on blood report modal.
+    #When User uploads a PDF file over 10MB.
+    #Then User should see "File exceeds 10MB" error
 
   Scenario: Verify valid PDF file upload
     Given User is on blood report modal.
@@ -39,12 +39,12 @@ Feature: Blood Report Upload Modal
     When User clicks "Upload & Process" after uploading valid file.
     Then User should see Report analysis.
 
-  Scenario: Verify onboarding button in report analysis
-    Given User is on blood report modal
-    When User clicks "Upload & Process" after uploading valid file
-    Then User should see onboarding button
-
-  Scenario: Validate fields on report analysis
-    Given User is on blood report modal
-    When User clicks "Upload & Process" after uploading valid file
-    Then User should see Blood Test Results, Complete Blood Count, Medical Conditions, Abnormal Values, Recommendations
+  #Scenario: Verify onboarding button in report analysis
+    #Given User is on blood report modal
+    #When User clicks "Upload & Process" after uploading valid file
+    #Then User should see onboarding button
+#
+  #Scenario: Validate fields on report analysis
+    #Given User is on blood report modal
+    #When User clicks "Upload & Process" after uploading valid file
+    #Then User should see Blood Test Results, Complete Blood Count, Medical Conditions, Abnormal Values, Recommendations

@@ -21,7 +21,7 @@ Feature: Functional test for onboarding step 6 and non functional scenarios for 
   Scenario: Verify subtext for step 7 is visible
     Given User is in step six
     When User selects from the options in step six
-    Then User should see subtext "To create a meal plan you'll enjoy, please select your preferred cuisines!"
+    Then User should see subtext. "To create a meal plan you'll enjoy, please select your preferred cuisines!"
 
   Scenario: Confirm the progress bar displays "Step 7 of 12"
     Given User is in step six

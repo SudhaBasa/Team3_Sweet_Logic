@@ -212,7 +212,7 @@ public class PremiumUserExerciseModule_Step {
 		objPremiumUserExerciseModule.getViewFullSchedule();
 	}
 
-	@Then("User should see title {string}")
+	@Then("User should see title. {string}")
 	public void user_should_see_title(String expectedTitle) {
 	
 		Assert.assertEquals(expectedTitle, objPremiumUserExerciseModule.getTitle());
