@@ -15,36 +15,28 @@ import team3.sweet.logic.utils.LoggerLoad;
 
 public class DriverFactory {
 	
-public static ThreadLocal<WebDriver> thdriver = new ThreadLocal<>();
+	public static ThreadLocal<WebDriver> thdriver = new ThreadLocal<>();
 	
+
 	public static String baseUrl = null;
-	
+
 	public static WebDriver initialization() {
 
-	
-		baseUrl = ConfigReader.getProperty("url"); 
-		System.out.println("URL: "+baseUrl);
+		baseUrl = ConfigReader.getProperty("url");
+		System.out.println("URL: " + baseUrl);
 		String browser = ConfigReader.getProperty("browser");
-		System.out.println("Browser: "+browser);
-		
-		/*String userName = ConfigReader.getProperty("username");
-		String password = ConfigReader.getProperty("password");
-		
-		System.out.println("User Name: " + userName);
-		System.out.println("Password: " + password);*/
-		
-		if(browser.equalsIgnoreCase("chrome")) {
+		System.out.println("Browser: " + browser);
+
+		if (browser.equalsIgnoreCase("chrome")) {
 			ChromeOptions co = new ChromeOptions();
-			co.setExperimentalOption("excludeSwitches", 
-		             Arrays.asList("enable-automation"));
+			co.setExperimentalOption("excludeSwitches", Arrays.asList("enable-automation"));
 			co.setExperimentalOption("useAutomationExtension", false);
 			co.addArguments("--incognito");
-		         
+
 			co.addArguments("--remote-allow-origins=*");
-			//co.addArguments("--headless");
+			// co.addArguments("--headless");
 			thdriver.set(new ChromeDriver(co));
-		}
-		else if (browser.equalsIgnoreCase("firefox")) {
+		} else if (browser.equalsIgnoreCase("firefox")) {
 
 			FirefoxOptions options = new FirefoxOptions();
 
@@ -57,7 +49,7 @@ public static ThreadLocal<WebDriver> thdriver = new ThreadLocal<>();
 
 		getdriver().get(baseUrl);
 		getdriver().manage().window().maximize();
-		getdriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		getdriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
 		return thdriver.get();
 
 	}
@@ -73,5 +65,6 @@ public static ThreadLocal<WebDriver> thdriver = new ThreadLocal<>();
 	public static void closeBrowser() {
 		getdriver().close();
 	}
+
 }
 

@@ -20,12 +20,12 @@ public class Login_OnboardingWithBloodReport_Steps {
 	WebDriver driver = DriverFactory.getdriver();
 	Login_OnboardingWithBloodReport_Page lobp = new Login_OnboardingWithBloodReport_Page(driver);
 
-	@Given("User filling profile form.")
-	public void user_filling_profile_form() {
 
-		lobp.completeOnboarding();
+@Given("User should have completed until filling profile form.")
+public void user_should_have_completed_until_filling_profile_form() {
+	lobp.completeOnboarding();
 
-	}
+}
 
 	// 06_Login_BloodReportUploadModal.feature
 
