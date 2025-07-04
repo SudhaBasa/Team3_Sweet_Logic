@@ -1,7 +1,7 @@
 Feature: Onboarding Step 1 UI
 
   Background: 
-    User clicks onboarding button after reaching to report analysis
+    Given User clicks onboarding button after reaching to report analysis
 
 
   Scenario: Verify Step 2 heading is visible
